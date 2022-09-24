@@ -1,0 +1,265 @@
+/* if you are using any Google fonts change the font names below to your fonts. 
+Any spaces in your font name should be replaced with a +. 
+Fonts are separated by a | */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Teko&display=swap');
+
+/* 
+||======================================================================||
+|| Site Plan Variables                                                  ||
+||======================================================================||
+*/
+:root {
+    /* 
+    || Base Colors from coolors.co 
+    */
+    --gray-x-gray: #bababa;
+    --battleship-gray: #8d8d8d;
+    --baby-blue-eyes: #a6cbeb;
+    --tufts-blue: #4c96d7;
+    --jet: #3a3a3a;
+    --white: #ffffff;
+
+    /* 
+    || Site Color Palate
+    */
+    --primary-color: var(--gray-x-gray);
+    --secondary-color: var(--battleship-gray);
+    --accent1-color: var(--baby-blue-eyes);
+    --accent2-color: var(--tufts-blue);
+    --accent3-color: var(--jet);
+    --accent4-color: var(--white);
+
+    /* 
+    || Site Fonts
+    */
+    --heading-font: Oswald, sans-serif;
+    --paragraph-font: Teko, sans-serif;
+
+    /* 
+    || Basic Color Combos
+    */
+    --headline-color-on-white: var(--secondary-color); /* headlines on a white background */
+    --headline-color-on-color: var(--primary-color); /* headlines on a colored background */
+    --paragraph-color-on-white: var(--accent2-color); /* paragraph text on a white background */
+    --paragraph-color-on-color: var(--accent3-color); /* paragraph text on a colored background */
+    --text-background-color: var(--accent4-color); /* text box background color */
+    --nav-link-color: var(--accent4-color);
+    --nav-background-color: var(--accent3-color);
+    --nav-hover-link-color: var(--accent3-color);
+    --nav-hover-background-color: var(--accent2-color);
+}
+
+
+/*
+||======================================================================||
+|| Natural Box Layout Model                                             ||
+||======================================================================||
+*/
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+/* 
+||======================================================================||
+|| Basic Page Formats                                                   ||
+||======================================================================||
+*/
+html {
+    background-color: var(--primary-color);
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    background-color: white;
+    padding: 1em;
+    align-content: center;
+    background-image: url("/phpmotors/images/site/small_check.jpg");
+}
+
+h1 {
+    font-family: var(--heading-font);
+    color: black;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: var(--heading-font);
+    color: var(--jet);
+}
+
+p, li {
+    font-family: var(--paragraph-font);
+    color: var(--jet);
+}
+
+header {
+    background-color: var(--white);
+    font-family: var(--heading-font);
+    color: var(--headline-color-on-color);
+}
+
+nav {
+    list-style: none;
+    margin: 0;
+    background: var(--jet);
+    /* overflow: auto; */
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 10px;
+}
+
+nav ul {
+    list-style: none;
+    display: contents;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    text-decoration: none;
+    display: block;
+    padding: 1em;
+    color: var(--white);
+    font-size: 1.2rem;
+}
+
+nav a:hover {
+    background-color: var(--tufts-blue);
+    color: var(--jet);
+}
+
+main {
+    padding: 10px;
+    margin: 5px;
+    background-color: var(--accent4-color);
+    border: 5px  var(--tufts-blue);
+    border-radius: 10px;
+}
+
+footer {
+    background-color: var(--accent4-color);
+    font-family: var(--heading-font);
+    color: var(--jet);
+    /* font-size: .9rem; */
+    border-radius: 10px;
+    text-align: center;
+}
+
+hr {
+    height: 5px;
+    background-color: var(--jet);
+}
+
+
+/* 
+||======================================================================||
+|| Class Formats                                                        ||
+||======================================================================||
+*/
+.head_para {
+    font-size: 1.2rem;
+    float: right;
+    padding-right: 40px;
+}
+
+.foot_para {
+    font-size: .9rem;
+}
+
+div.ug_img {
+    display:flex;
+    height: 90px;
+    width: 180px;
+    background-color: var(--tufts-blue);
+    border: 1px solid var(--jet);
+    justify-content: center;
+}
+
+.upgrade {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* 
+||======================================================================||
+|| ID Formats                                                           ||
+||======================================================================||
+*/
+#head_logo {
+    width: 100%;
+    height: auto;
+}
+
+#content_box {
+    min-width: 80%;
+    border: 5px solid var(--tufts-blue);
+    border-radius: 10px;
+    background-color: var(--white);
+    align-items: center;
+}
+
+#call_to_action {
+    display: flex;
+    flex-direction: row;
+}
+
+#own_delo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#delo_pic img {
+    /* justify-content: flex-end; */
+    width: 80%;
+}
+
+#delo_upgrades {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+#bottom_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#article1 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+}
+
+
+
+/* 
+||======================================================================||
+|| Form Formats                                                         ||
+||======================================================================||
+*/
+
+
+/*
+||======================================================================||
+|| Clearfix: Force an Element not to collapse                           ||
+||======================================================================||
+*/
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
