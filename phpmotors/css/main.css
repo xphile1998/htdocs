@@ -228,6 +228,7 @@ div.ug_img {
     align-content: center;
     flex-wrap: wrap;
     align-items: flex-end;
+    justify-content: space-around;
 }
 
 #bottom_row {

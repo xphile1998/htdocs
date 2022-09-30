@@ -19,7 +19,7 @@
         return $link;
     } catch(PDOException $e) {
         // echo "It didn't work, error: " . $e->getMessage();
-        header('Location: /phpmotors/server_error.php');
+        header('Location: /phpmotors/view/server_error.php');
         exit;
     }
  }
