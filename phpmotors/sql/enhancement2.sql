@@ -32,4 +32,10 @@ FROM inventory i
     INNER JOIN carclassification cc ON i.classificationId = cc.classificationId
 WHERE cc.classificationName = "SUV";
 
---
+-- DELETE the Jeep Wrangler from the INVENTORY table
+DELETE FROM inventory
+WHERE invMake = "Jeep"
+    AND invModel = "Wrangler";
+
+-- UPDATE all records in the INVENTORY table to add "/phpmotors" to the beginning of the file path in the invImage and invThumbnail columns using a single query
+UPDATE inventory
