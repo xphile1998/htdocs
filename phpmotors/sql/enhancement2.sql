@@ -39,3 +39,6 @@ WHERE invMake = "Jeep"
 
 -- UPDATE all records in the INVENTORY table to add "/phpmotors" to the beginning of the file path in the invImage and invThumbnail columns using a single query
 UPDATE inventory
+SET invImage = CONCAT('/phpmotors', invImage),
+    invThumbnail = CONCAT('/phpmotors', invThumbnail);
+    
