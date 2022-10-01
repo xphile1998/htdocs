@@ -19,3 +19,17 @@ UPDATE clients
 SET clientLevel = '3'
 WHERE clientEmail = "tony@starknet.com";
 
+-- REPLACE the word 'small' with 'spacious' in the invDescription field in the INVENTORY table of the PHPMOTORS database
+UPDATE inventory
+SET invDescription = REPLACE (invDescription, "small", "spacious")
+WHERE invMake = "GM"
+    AND invModel = "Hummer";
+
+-- INNER JOIN task...
+SELECT i.invModel,
+    cc.classificationName
+FROM inventory i
+    INNER JOIN carclassification cc ON i.classificationId = cc.classificationId
+WHERE cc.classificationName = "SUV";
+
+--
