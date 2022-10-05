@@ -12,6 +12,19 @@
             "database": "phpmotors",
             "username": "iClient",
             "password": "A)TkEQkiK)c!A!5a"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MariaDB",
+            "name": "Localhost",
+            "database": "phpmotors",
+            "username": "iClient",
+            "password": "ELu/hDb[lIGkrF8/"
         }
     ]
 }
