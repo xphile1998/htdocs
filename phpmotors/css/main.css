@@ -162,10 +162,12 @@ hr {
 || Class Formats                                                        ||
 ||======================================================================||
 */
-.head_para {
+a.head_para {
+    font-family: var(--paragraph-font);
     font-size: 1.2rem;
     float: right;
     padding-right: 40px;
+    padding-top: 20px;
 }
 
 .foot_para {
