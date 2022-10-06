@@ -16,7 +16,11 @@
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
 
     <!-- PHP call to the NAV snippet -->
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/nav.php'; ?>
+    <!-- <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/nav.php'; ?> -->
+    <nav class="navigation">
+        <?php echo $navList; ?>
+    </nav>
+
 
     <main>
         <h1>Welcome to PHP Motors!</h1>
