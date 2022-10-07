@@ -1,6 +1,8 @@
 <?php
 // This is the Main PHP Motors Model
 
+
+
 function getClassifications() {
     // Create a connection object from the phpmotors connection function
     $db = phpmotorsConnect();

@@ -2,10 +2,10 @@
 // This is the accounts controller for the site
 
 // Get the database connection file
-require_once '../library/connections.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/library/connections.php';
 
 // Get the PHP Motors Model for use as needed
-require_once '../model/main-model.php';
+require_once $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/model/main-model.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -33,6 +33,6 @@ switch ($action) {
         break;
 
     default:
-        include 'view/login.php';
+        include $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/view/login.php';
         break;
 }
