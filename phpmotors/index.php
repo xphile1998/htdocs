@@ -10,6 +10,7 @@ require_once 'model/main-model.php';
 // Get the array of classifications
 $classifications = getClassifications();
 // var_dump($classifications);
+// echo '<pre>'.print_r($classifications, true).'</pre>';
 // exit;
 
 // Build a navigation bar using the $classifications arrary
