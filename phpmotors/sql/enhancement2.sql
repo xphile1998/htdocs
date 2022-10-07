@@ -16,7 +16,7 @@ VALUES (
 
 -- UPDATE the Stark entry in the CLIENT table to clientLevel='3'
 UPDATE clients
-SET clientLevel = '3'
+SET clientLevel = 3
 WHERE clientEmail = "tony@starknet.com";
 
 -- REPLACE the word 'small' with 'spacious' in the invDescription field in the INVENTORY table of the PHPMOTORS database
