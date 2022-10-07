@@ -28,11 +28,11 @@ $action = filter_input(INPUT_GET, 'action');
     }
 
 switch ($action) {
-    case '': 
+    case 'something': 
 
         break;
 
     default:
-
+        include 'view/login.php';
         break;
 }
