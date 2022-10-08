@@ -22,7 +22,25 @@
     <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/nav.php'; ?>
 
     <main>
-        <h1>Client Login</h1>
+        <h1>Sign in</h1>
+        <div class="login_form">
+            <label for="email_adrs">Email Address</label>
+            <input type="text" placeholder="username@email.com" name="clientEmail" required>
+            
+            <label for="psw">Password</label>
+            <input type="password" placeholder="Password@1" name="clientPassword" required>
+
+            </br></br>
+            
+            <button id="login_button" type="submit">Sign In</button>
+
+            </br></br>
+            
+        </div>
+        <div id="register">
+            <a id="register" href="../accounts/index.php?action=register">Not a member yet?</a>
+        </div>
+
     </main>
     
     <!-- PHP call to the FOOTER snippet -->

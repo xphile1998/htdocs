@@ -8,4 +8,4 @@
         <li class="menu_choice"><a href="#">Trucks</a></li>
         <li class="menu_choice"><a href="#">Used</a></li>
     </ul> -->
-</nav>
+</nav> 
