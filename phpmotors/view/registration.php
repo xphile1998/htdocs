@@ -22,24 +22,23 @@
     <main>
         <h1>New Client Registration</h1>
 
-        <div id="registration">
+        <form id="registration">
             <label for="firstName">First Name</label>
-            <input type="text" placeholder="First Name" name="clientFirstname" required>
+            <input type="text" id="firstName" placeholder="First Name" name="clientFirstname" required>
             <label for="lastName">Last Name</label>
-            <input type="text" placeholder="Last Name" name="clientLastname" required>
+            <input type="text" id="lastName" placeholder="Last Name" name="clientLastname" required>
             <label for="email">Email Address</label>
-            <input type="email" placeholder="username@email.com" name="clientEmail" required>
+            <input type="email" id="email" placeholder="username@email.com" name="clientEmail" required>
             <p>Passwords must at least 8 characters and contain at least 1 number, 1 captial letter, and 1 special character.</p>
             <label for="password">Password</label>
-            <input type="password" placeholder="Password@1" name="clientPassword">
+            <input type="password" id="password" placeholder="Password@1" name="clientPassword">
 
             <i class="fa-solid fa-eye" id="eye">Show Password</i>
 
-            </br>
+            <!-- </br> -->
 
             <button id="signUpBtn" type="submit">Register</button>
-
-        </div>
+        </form>
     </main>
     
     <!-- PHP call to the FOOTER snippet -->

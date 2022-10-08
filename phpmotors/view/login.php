@@ -23,24 +23,26 @@
 
     <main>
         <h1>Sign in</h1>
-        <div class="login_form">
-            <label for="email_adrs">Email Address</label>
-            <input type="text" placeholder="username@email.com" name="clientEmail" required>
-            
-            <label for="psw">Password</label>
-            <input type="password" placeholder="Password@1" name="clientPassword" required>
 
-            </br></br>
-            
-            <button id="login_button" type="submit">Sign In</button>
+        <form class="login_form">
+            <!-- <div class="login_form"> -->
+                <label for="email_adrs">Email Address</label>
+                <input type="text" id="email_adrs" placeholder="username@email.com" name="clientEmail" required>
+                
+                <label for="psw">Password</label>
+                <input type="password" id="psw" placeholder="Password@1" name="clientPassword" required>
 
-            </br></br>
-            
-        </div>
-        <div id="register">
+                <!-- </br></br> -->
+                
+                <button id="login_button" type="submit">Sign In</button>
+
+                <!-- </br></br> -->
+        </form>        
+        <!-- </div> -->
+        <div class="register">
             <a id="register" href="../accounts/index.php?action=register">Not a member yet?</a>
         </div>
-
+        
     </main>
     
     <!-- PHP call to the FOOTER snippet -->
