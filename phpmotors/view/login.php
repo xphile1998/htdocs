@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 
-<?php require $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/model/main-model.php'; ?>
+<?php //require $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/model/main-model.php'; ?>
 
 
 <head>
