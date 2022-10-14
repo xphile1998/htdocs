@@ -28,7 +28,7 @@ $action = filter_input(INPUT_POST, 'action');
     }
 
 switch ($action) {
-    case 'register': 
+    case 'deliveringRegisterView': 
         include $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/view/registration.php';
         break;
 

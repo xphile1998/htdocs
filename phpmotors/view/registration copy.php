@@ -23,17 +23,21 @@
         <h1>New Client Registration</h1>
 
         <form id="registration">
-            <label for="clientFirstName">First Name</label>
-            <input type="text" id="clientFirstName" name="clientFirstname">
-            <label for="clientLastName">Last Name</label>
-            <input type="text" id="clientLastName" name="clientLastname">
-            <label for="clientEmail">Email Address</label>
-            <input type="email" id="clientEmail" name="clientEmail">
-            <span>Passwords must at least 8 characters and contain at least 1 number, 1 captial letter, and 1 special character.</span>
-            <label for="clientPassword">Password</label>
-            <input type="password" id="clientPassword" name="clientPassword">
-            
-            <input type="submit" value="Register">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="First Name" name="clientFirstname" required>
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" placeholder="Last Name" name="clientLastname" required>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="username@email.com" name="clientEmail" required>
+            <p>Passwords must at least 8 characters and contain at least 1 number, 1 captial letter, and 1 special character.</p>
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Password@1" name="clientPassword">
+
+            <i class="fa-solid fa-eye" id="eye">Show Password</i>
+
+            <!-- </br> -->
+
+            <button id="signUpBtn" type="submit">Register</button>
         </form>
     </main>
     
