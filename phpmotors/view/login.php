@@ -16,10 +16,10 @@
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
 
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/nav.php'; ?>
-
-        <h1 class="account-heading">Sign in</h1>
-
+        
         <main>
+            <h1 class="account-heading">Sign in</h1>
+
             <form method="post" class="login_form">
                 <label for="email">Email Address</label>
                 <input type="text" id="email" name="clientEmail">
@@ -30,7 +30,7 @@
                 <input type="submit" value="Sign-in">
             </form>
             <br />
-            <a href="/phpmotors/accounts/?action=deliveringRegisterView" id="toreg">Not a member yet?</a>
+            <p><a href="/phpmotors/accounts/?action=deliverRegisterView" id="toreg">Not a member yet?</a></p>
         </main>
 
         <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>

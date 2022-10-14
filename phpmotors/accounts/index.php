@@ -28,11 +28,15 @@ $action = filter_input(INPUT_POST, 'action');
     }
 
 switch ($action) {
-    case 'deliveringRegisterView': 
+    case 'deliverLoginView':
+        include $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/view/login.php';
+        break;
+
+    case 'deliverRegisterView': 
         include $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/view/registration.php';
         break;
 
     default:
-        include $_SERVER['DOCUMENT_ROOT'] .'/phpmotors/view/login.php';
+        // echo 'There is currently nothing for this to go to as a default. Sorry!';
         break;
 }
