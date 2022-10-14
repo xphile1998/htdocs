@@ -12,11 +12,13 @@
 
 <body>
 <div id="content_box">
-    <!-- PHP call to the HEADER snippet -->
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
+    <header>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
+    </header>
 
-    <!-- PHP call to the NAV snippet -->
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/nav.php'; ?>
+    <nav class="navigation">
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/nav.php'; ?>
+    </nav>
 
     <main>
         <h1>Welcome to PHP Motors!</h1>
@@ -84,9 +86,11 @@
         </div>
     </main>
     
-    <!-- PHP call to the FOOTER snippet -->
-    <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
-
+    <hr>
+    <footer>
+        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
+    </footer>
+    
 </div>
 </body>
 </html>

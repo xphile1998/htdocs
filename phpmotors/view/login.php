@@ -12,11 +12,14 @@
 
 <body>
     <div id="content_box">
+        <header>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
+        </header>
 
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/header.php'; ?>
+        <nav class="navigation">
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/nav.php'; ?>
+        </nav>
 
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/nav.php'; ?>
-        
         <main>
             <h1 class="account-heading">Sign in</h1>
 
@@ -33,7 +36,10 @@
             <p><a href="/phpmotors/accounts/?action=deliverRegisterView" id="toreg">Not a member yet?</a></p>
         </main>
 
-        <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
+        <hr>
+        <footer>
+            <?php include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/snippets/footer.php'; ?>
+        </footer>
     </div>
 
 </body>
