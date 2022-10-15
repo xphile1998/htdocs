@@ -22,24 +22,35 @@
     </nav>
     
     <main>
-        <h1>New Client Registration</h1>
+        <h1 class="account-heading">New Client Registration</h1>
+
+        <?php 
+            if (isset($message)) {
+                echo $message;
+            }
+        ?>
 
         <form id="registration" action="/phpmotors/accounts/index.php" method="post">
             <label for="clientFirstname">First Name</label>
-            <input type="text" id="clientFirstname" name="clientFirstname" required>
+            <input type="text" id="clientFirstname" name="clientFirstname">
 
             <label for="clientLastname">Last Name</label>
-            <input type="text" id="clientLastname" name="clientLastname" required>
+            <input type="text" id="clientLastname" name="clientLastname">
 
             <label for="clientEmail">Email Address</label>
-            <input type="email" id="clientEmail" name="clientEmail" required>
+            <input type="email" id="clientEmail" name="clientEmail">
 
+            <br />
             <span>Passwords must at least 8 characters and contain at least 1 number, 1 captial letter, and 1 special character.</span>
+            <br /><br />
+
             <label for="clientPassword">Password</label>
-            <input type="password" id="clientPassword" name="clientPassword" required>
+            <input type="password" id="clientPassword" name="clientPassword">
+
+            <br />
             
-            <input type="submit" value="Register">
-            <input type="hidden" value="registerUser">
+            <input type="submit" name="submit" id="regbtn" value="Register">
+            <input type="hidden" name="action" value="registerUser">
         </form>
     </main>
     

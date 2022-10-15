@@ -23,6 +23,12 @@
         <main>
             <h1 class="account-heading">Sign in</h1>
 
+            <?php
+                if (isset($message)) {
+                    echo $message;
+                }
+            ?>
+
             <form method="post" class="login_form">
                 <label for="email">Email Address</label>
                 <input type="text" id="email" name="clientEmail">

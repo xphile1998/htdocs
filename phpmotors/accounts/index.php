@@ -5,20 +5,15 @@
 ||                              ||
 \\==============================*/
 
-// Create or access a session
-session_start();
-
 /*======================================================\\
 ||  We are going to get the following support files:    ||
 ||    + Database connection file                        ||
 ||    + Main Model file                                 ||
 ||    + Accounts Model file                             ||
-||    + Functions file                                  ||
 \\======================================================*/
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/connections.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/main-model.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/accounts_model.php';
-// require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/accounts-model.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -55,28 +50,15 @@ switch ($action) {
         break;
         
     case 'registerUser':
-  
         // Collect, filter, and store the user data
-        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING);
-        $clientLastname = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING);
-        $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
-        $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
-
-        // Validate EMAIL and PASSWORD
-        // $clientEmail = checkEmail($clientEmail);
-        // $clientPassword = checkPassword($clientPassword);
-
-        // Check to see if this EMAIL already exists in the Clients table
-        // $existingEmail = checkExistingEmail($clientEmail);
-        // if ($existingEmail) {
-        //     $_SESSION['message'] = '<p class="notice">That email already exists in our database. Do you want to login instead?</p>';
-        //     include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
-        //     exit;
-        // }
+        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
+        $clientLastname = filter_input(INPUT_POST, 'clientLastname');
+        $clientEmail = filter_input(INPUT_POST, 'clientEmail');
+        $clientPassword = filter_input(INPUT_POST, 'clientPassword');
 
         // Check to see if there is any missing data
-        if (empty($clientFirstName) || empty($clientLastName) || empty($clientEmail) || empty($clientPassword)) {
-            $_SESSION['message'] = '<p class="notice">Please provide all the information for all empty fields.</p>';
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
+            $message = '<p class="center">Please provide all the information for all empty fields.</p>';
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/registration.php';
             exit;
         }
@@ -86,12 +68,11 @@ switch ($action) {
 
         // Check out the result of the INSERT into the database
         if ($regOutcome === 1) {
-            setcookie('firstname', $clientFirstname, strtotime('+1 year'), "/");
-            $_SESSION['message'] = "Thanks for registering $clientFirstname. Please use your email and password to login.";
-            header('location: /phpmotors/accounts/?action=login');
+            $message = "<p>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
             exit;
         } else {
-            $_SESSION['message'] = "<p>Sorry, $clientFirstname, but the registration failed. Please try again.</p>";
+            $message = "<p>Sorry, $clientFirstname, but the registration failed. Please try again.</p>";
             include $_SERVER['DOCUMNET_ROOT'] . '/phpmotors/view/registration.php';
             exit; 
         }
