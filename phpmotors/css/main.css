@@ -193,6 +193,10 @@ div.ug_img {
     align-items: center;
 }
 
+.message {
+    color: red;
+    font-size: 1.5rem;
+}
 
 /* 
 ||======================================================================||
