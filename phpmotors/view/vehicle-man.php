@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template</title>
+    <title>Vehicle Management</title>
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/normalize.css">
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/main.css">
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/medium.css">
@@ -21,7 +21,7 @@
     </nav>
 
     <main>
-        <h1>Content Title Here</h1>
+        <h1>Vehicle Management</h1>
     </main>
     
     <hr>

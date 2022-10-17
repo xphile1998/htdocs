@@ -1,7 +1,7 @@
 <?php
 /*==============================\\
 ||                              ||  
-||  VEHILCES CONTROLLER         ||
+||  VEHICLES CONTROLLER         ||
 ||                              ||
 \\==============================*/
 
@@ -17,6 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/vehicles-model.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
+$classificationList = getClassificationList();
 
 // Default Page Title
 $pageTitle = 'Accounts';

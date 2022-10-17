@@ -1,7 +1,9 @@
 <?php
-// This is the Main PHP Motors Model
-
-
+/*==========================\\
+||                          ||
+||  MAIN PHPMOTORS MODEL    ||
+||                          ||
+\\==========================*/
 
 function getClassifications() {
     // Create a connection object from the phpmotors connection function
@@ -12,12 +14,10 @@ function getClassifications() {
     $stmt = $db->prepare($sql);
     // The next line runs the prepared statement
     $stmt->execute();
-    // The next line gets the data from the database and
-    // stores it as an array in the $classifications variable
+    // The next line gets the data from the database and stores it as an array in the $classifications variable
     $classifications = $stmt->fetchAll(PDO::FETCH_ASSOC);
     // the next line closes the interaction with the database
     $stmt->closeCursor();
-    // The next line send the array of data back to thwhere the function
-    // was called (this should be the controller)
+    // The next line send the array of data back to thwhere the function was called (this should be the controller)
     return $classifications;
 }
