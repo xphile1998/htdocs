@@ -6,19 +6,12 @@
 \\==========================*/
 
 function getClassificationList() {
-
     $db = phpmotorsConnect();
-
     $sql = 'SELECT classficationId, classificationName FROM carclassification ASC';
-
     $stmt = $db->prepare($sql);
-
     $stmt->execute();
-
     $allClassifications = $stmt->fetchall(PDO::FETCH_ASSOC);
-
     $stmt->closeCursor();
-
     return $allClassifications;
 }
 
@@ -32,9 +25,7 @@ function addVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbna
         VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, :invStock, :invColor, :classificationId)';
     // Create the prepared statement using the phpmotors connection
     $stmt = $db->prepare($sql);
-    // The next four lines replace the placeholders in the SQL
-    // statement with the actual values in the variables
-    // and tells the database the type of data it is
+    // The next four lines replace the placeholders in the SQL statement with the actual values in the variables and tells the database the type of data it is
     $stmt->bindValue(':invMake', $invMake, PDO::PARAM_STR);
     $stmt->bindValue(':invModel', $invModel, PDO::PARAM_STR);
     $stmt->bindValue(':invDescription', $invDescription, PDO::PARAM_STR);
@@ -54,6 +45,7 @@ function addVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbna
     return $rowsChanged;
 }
 
+/*
 // Add a new classification to the carclassification table
 function addClassification($clientFirstname, $clientLastname, $clientEmail, $clientPassword)
 {
@@ -64,9 +56,7 @@ function addClassification($clientFirstname, $clientLastname, $clientEmail, $cli
         VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';
     // Create the prepared statement using the phpmotors connection
     $stmt = $db->prepare($sql);
-    // The next four lines replace the placeholders in the SQL
-    // statement with the actual values in the variables
-    // and tells the database the type of data it is
+    // The next four lines replace the placeholders in the SQL statement with the actual values in the variables and tells the database the type of data it is
     $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
     $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
     $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
@@ -80,3 +70,4 @@ function addClassification($clientFirstname, $clientLastname, $clientEmail, $cli
     // Return the indication of success (rows changed)
     return $rowsChanged;
 }
+*/

@@ -30,7 +30,7 @@
             }
         ?>
 
-        <form id="registration" action="/phpmotors/accounts/index.php" method="post">
+        <form autocomplete="off" id="registration" action="/phpmotors/accounts/index.php" method="post">
             <label for="clientFirstname">First Name</label>
             <input type="text" id="clientFirstname" name="clientFirstname">
 

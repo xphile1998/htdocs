@@ -158,6 +158,8 @@ hr {
 
 input, label {
     display: block;
+    font-family: var(--paragraph-font);
+    font-size: 1.25rem;
 }
 
 
