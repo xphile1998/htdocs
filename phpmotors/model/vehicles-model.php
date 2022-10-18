@@ -7,7 +7,7 @@
 
 function getClassificationList() {
     $db = phpmotorsConnect();
-    $sql = 'SELECT classficationId, classificationName FROM carclassification ASC';
+    $sql = 'SELECT classificationId, classificationName FROM carclassification';
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $allClassifications = $stmt->fetchall(PDO::FETCH_ASSOC);
@@ -16,13 +16,17 @@ function getClassificationList() {
 }
 
 // Adds a new vehicle to the inventory table
-function addVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbnail, $invPrice, $invStock, $invColor, $classificationId)
+function addVehicle($invMake, $invModel, $invDescription, $invPrice, $invStock, $invColor, $classificationId)
 {
     // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
     // The SQL statement
     $sql = 'INSERT INTO inventory (invMake, invModel, invDescription, invImage, invThumbnail, invPrice, invStock, invColor, classificationId)
         VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, :invStock, :invColor, :classificationId)';
+
+    $invImage = "/phpmotors/images/no-image.png";
+    $invThumbnail = "/phpmotors/images/no-image.png";
+    
     // Create the prepared statement using the phpmotors connection
     $stmt = $db->prepare($sql);
     // The next four lines replace the placeholders in the SQL statement with the actual values in the variables and tells the database the type of data it is
@@ -45,22 +49,18 @@ function addVehicle($invMake, $invModel, $invDescription, $invImage, $invThumbna
     return $rowsChanged;
 }
 
-/*
 // Add a new classification to the carclassification table
-function addClassification($clientFirstname, $clientLastname, $clientEmail, $clientPassword)
+function addClassification($classificationName)
 {
     // Create a connection object using the phpmotors connection function
     $db = phpmotorsConnect();
     // The SQL statement
-    $sql = 'INSERT INTO clients (clientFirstname, clientLastname,clientEmail, clientPassword)
-        VALUES (:clientFirstname, :clientLastname, :clientEmail, :clientPassword)';
+    $sql = 'INSERT INTO carclassification (classificationName)
+        VALUES (:classificationName)';
     // Create the prepared statement using the phpmotors connection
     $stmt = $db->prepare($sql);
     // The next four lines replace the placeholders in the SQL statement with the actual values in the variables and tells the database the type of data it is
-    $stmt->bindValue(':clientFirstname', $clientFirstname, PDO::PARAM_STR);
-    $stmt->bindValue(':clientLastname', $clientLastname, PDO::PARAM_STR);
-    $stmt->bindValue(':clientEmail', $clientEmail, PDO::PARAM_STR);
-    $stmt->bindValue(':clientPassword', $clientPassword, PDO::PARAM_STR);
+    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
     // Insert the data
     $stmt->execute();
     // Ask how many rows changed as a result of our insert
@@ -70,4 +70,3 @@ function addClassification($clientFirstname, $clientLastname, $clientEmail, $cli
     // Return the indication of success (rows changed)
     return $rowsChanged;
 }
-*/

@@ -36,7 +36,41 @@ if ($action == NULL) {
 }
 
 switch ($action) {
-    case '':
+    case 'addVehicle':
+        // Seeing where we are getting to
+        // echo "<script>console.log('Debug Point: Adding Vehicle - Entered');</script>";
+        
+        // Collect, filter, and store user data
+        $invMake = filter_input(INPUT_POST, 'invMake');
+        $invModel = filter_input(INPUT_POST, 'invModel');
+        $invDescription = filter_input(INPUT_POST, 'invDescription');
+        $invPrice = filter_input(INPUT_POST, 'invPrice');
+        $invStock = filter_input(INPUT_POST, 'invStock');
+        $invColor = filter_input(INPUT_POST, 'invColor');
+        $classificationId = filter_input(INPUT_POST, 'classificationId');
+
+        // What is the state of the values sent over?
+        // echo "<script>console.log(`$invMake, $invModel, $invDescription, $invPrice, $invStock, $invColor, $classificationId`);</script>";
+
+        // Check to see if any data is missing
+        if (empty($invMake) || empty($invModel) || empty($invDescription) || empty($invPrice) || empty($invStock) || empty($invColor) || empty($classificationId)) {
+            $message = '<p class="message">Please provide all the information from the empty fields.</p>';
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/add-vehicle.php';
+            exit;
+        }
+
+        $addVehicleOutcome = addVehicle($invMake, $invModel, $invDescription, $invPrice, $invStock, $invColor, $classificationId);
+
+        // Check out the result of the INSERT into the database
+        if ($addVehicleOutcome === 1) {
+            $message = '<p class="message">Thanks for adding the $invModel.</p>';
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/vehicle-man.php';
+            exit;
+        } else {
+            $message = '<p class="message">Sorry, but adding $invModel failed. Please try again.</p>';
+            include $_SERVER['DOCUMNET_ROOT'] . '/phpmotors/view/add-vehicle.php';
+            exit; 
+        }     
         
         break;
 
@@ -71,6 +105,7 @@ switch ($action) {
         break;
 
     default:
-        // echo 'There is currently nothing for this to go to as a default. Sorry!';
+        $pageTitle = 'Vehicle Management Page';
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/vehicle-man.php';
         break;
 }
