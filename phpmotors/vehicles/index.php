@@ -19,6 +19,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/vehicles-model.php';
 $classifications = getClassifications();
 $classificationsList = getClassificationList();
 
+$message = "";
+
 // Default Page Title
 $pageTitle = 'Accounts';
 
@@ -87,7 +89,7 @@ switch ($action) {
         
         // Check if input is empty
         if (empty($classificationName)) {
-            $message = '<p class="message">Please be sure to fill out the entire form before submitting.</p>';
+            $message = "<p class='message'>Please be sure to fill out the entire form before submitting.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/add-classification.php';
             exit;
         }
@@ -96,7 +98,7 @@ switch ($action) {
 
         // Check for the insertion into the database
         if ($addClassificationOutcome === 1) {
-            $message = '<p class="message">Thank you for adding $classificationName.</p>';
+            $message = "<p class='message'>Thank you for adding $classificationName.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/vehicle-man.php';
             exit;
         } else {
@@ -109,6 +111,6 @@ switch ($action) {
 
     default:
         $pageTitle = 'Vehicle Management Page';
-        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/views/vehicle-man.php';
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/vehicle-man.php';
         break;
 }

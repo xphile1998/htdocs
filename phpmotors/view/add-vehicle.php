@@ -27,33 +27,34 @@
             <?php
                 if (isset($message)) {
                     echo ($message);
+                    $message = "";
                 }
             ?>
 
             <form id="addVehicle" action="/phpmotors/vehicles/index.php" method="post">
                 <label for="invMake">Enter the Make (manufacturer)</label>
                 <input type="text" id="invMake" name="invMake" size="30">
-                <p></p>
+                <br>
 
                 <label for="invModel">Enter in the Model name</label>
                 <input type="text" id="invModel" name="invModel" size="30">
-                <p></p>
+                <br>
 
                 <label for="invDescription">Enter in a Description of the vehicle</label>
                 <textarea rows="5" cols="30" id="invDescription" name="invDescription" size="30"></textarea>
-                <p></p>
+                <br>
 
                 <label for="invPrice">Enter in the Price of the vehicle</label>
                 <input type="number" id="invPrice" name="invPrice" size="30">
-                <p></p>
+                <br>
 
                 <label for="InvStock">Enter in the number in Stock</label>
                 <input type="number" id="invStock" name="invStock" size="30">
-                <p></p>
+                <br>
 
                 <label for="invColor">Enter in the Color</label>
                 <input type="text" id="invColor" name="invColor" size="30">
-                <p></p>
+                <br>
 
                 <label for="classificationId">Enter in the Classisfication</label>
                 <?php 
@@ -61,8 +62,8 @@
                         echo $selectList; 
                     }
                 ?>
-                <p></p>
-                <p></p>
+                <br>
+                <br>
                 
                 <input type="submit" name="submit" id="addbtn" value="Add Vehicle">
                 <input type="hidden" name="action" value="addVehicle">

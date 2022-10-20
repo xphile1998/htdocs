@@ -23,6 +23,18 @@
     <main>
         <h1>Vehicle Management</h1>
 
+        <?php
+            if (isset($message)) {
+                echo ($message);
+            }
+        ?>
+
+        <p class="welcome">Welcome to Vehicle Managment! What would you like to do today?</p>
+
+        <ol class="vManageMenu">
+            <li><a href="/phpmotors/vehicles/index.php?action=addClassification">Add a Classification</a></li>
+            <li><a href="/phpmotors/vehicles/index.php?action=addVehicle">Add a Vehicle</a></li>
+        </ol>
         
     </main>
     

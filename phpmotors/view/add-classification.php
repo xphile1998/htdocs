@@ -8,6 +8,7 @@
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/normalize.css">
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/main.css">
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/medium.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 
 <body>
@@ -32,7 +33,7 @@
         <form id="addClassification" action="/phpmotors/vehicles/index.php" method="post">
             <label for="classificationName">New Classification Name</label>
             <input type="text" id="classificationName" name="classificationName">
-            <br />
+            <br>
             <input type="submit" name="submit" id="addbtn" value="Add Classification">
             <input type="hidden" name="action" value="addClassification">
         </form>
