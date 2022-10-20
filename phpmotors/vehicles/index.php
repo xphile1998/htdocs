@@ -102,7 +102,7 @@ switch ($action) {
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/vehicle-man.php';
             exit;
         } else {
-            $message = '<p class="message">Sorry, but adding $classificationName failed. Please try again.</p>';
+            $message = "<p class='message'>Sorry, but adding $classificationName failed. Please try again.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/add-classification.php';
             exit;
         }

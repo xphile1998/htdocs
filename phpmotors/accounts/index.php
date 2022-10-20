@@ -58,7 +58,7 @@ switch ($action) {
 
         // Check to see if there is any missing data
         if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
-            $message = '<p class="message">Please provide all the information for all empty fields.</p>';
+            $message = "<p class='message'>Please provide all the information for all empty fields.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/registration.php';
             exit;
         }
@@ -68,11 +68,11 @@ switch ($action) {
 
         // Check out the result of the INSERT into the database
         if ($regOutcome === 1) {
-            $message = '<p class="message">Thanks for registering $clientFirstname. Please use your email and password to login.</p>';
+            $message = "<p class='message'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
             exit;
         } else {
-            $message = '<p class="message">Sorry, $clientFirstname, but the registration failed. Please try again.</p>';
+            $message = "<p class='message'>Sorry, $clientFirstname, but the registration failed. Please try again.</p>";
             include $_SERVER['DOCUMNET_ROOT'] . '/phpmotors/view/registration.php';
             exit; 
         }
