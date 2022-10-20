@@ -72,11 +72,11 @@ switch ($action) {
 
         // Check out the result of the INSERT into the database
         if ($addVehicleOutcome === 1) {
-            $message = '<p class="message">Thanks for adding the $invModel.</p>';
+            $message = "<p class='message'>Thanks for adding the $invModel.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/vehicle-man.php';
             exit;
         } else {
-            $message = '<p class="message">Sorry, but adding $invModel failed. Please try again.</p>';
+            $message = "<p class='message'>Sorry, but adding $invModel failed. Please try again.</p>";
             include $_SERVER['DOCUMNET_ROOT'] . '/phpmotors/view/add-vehicle.php';
             exit; 
         }     
