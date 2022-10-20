@@ -41,15 +41,15 @@
                 <br>
 
                 <label for="invDescription">Enter in a Description of the vehicle</label>
-                <textarea rows="5" cols="30" id="invDescription" name="invDescription" size="30"></textarea>
+                <textarea rows="5" cols="30" id="invDescription" name="invDescription"></textarea>
                 <br>
 
                 <label for="invPrice">Enter in the Price of the vehicle</label>
-                <input type="number" id="invPrice" name="invPrice" size="30">
+                <input type="number" id="invPrice" name="invPrice">
                 <br>
 
-                <label for="InvStock">Enter in the number in Stock</label>
-                <input type="number" id="invStock" name="invStock" size="30">
+                <label for="invStock">Enter in the number in Stock</label>
+                <input type="number" id="invStock" name="invStock">
                 <br>
 
                 <label for="invColor">Enter in the Color</label>

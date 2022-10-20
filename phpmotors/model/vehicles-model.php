@@ -1,10 +1,12 @@
 <?php
+
 /*==========================\\
 ||                          ||
 ||  VEHICLES MODEL          ||
 ||                          ||
 \\==========================*/
 
+// Create a dynamic list of the car classifications
 function getClassificationList() {
     $db = phpmotorsConnect();
     $sql = 'SELECT classificationId, classificationName FROM carclassification';
@@ -23,7 +25,6 @@ function addVehicle($invMake, $invModel, $invDescription, $invPrice, $invStock, 
     // The SQL statement
     $sql = 'INSERT INTO inventory (invMake, invModel, invDescription, invImage, invThumbnail, invPrice, invStock, invColor, classificationId)
         VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, :invStock, :invColor, :classificationId)';
-
     $invImage = "/phpmotors/images/no-image.png";
     $invThumbnail = "/phpmotors/images/no-image.png";
     

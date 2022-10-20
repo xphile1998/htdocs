@@ -19,10 +19,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/vehicles-model.php';
 $classifications = getClassifications();
 $classificationsList = getClassificationList();
 
-$message = "";
-
 // Default Page Title
-$pageTitle = 'Accounts';
+$pageTitle = 'Vehicles';
 
 // Build a navigation bar using the $classifications arrary
 $navList = '<ul>';
