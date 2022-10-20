@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Template</title>
+    <title>Add a Car Classification</title>
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/normalize.css">
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/main.css">
     <link rel = "stylesheet" media="screen" href = "/phpmotors/css/medium.css">
@@ -21,7 +21,21 @@
     </nav>
 
     <main>
-        <h1>Content Title Here</h1>
+        <h1>Add a Car Classification</h1>
+
+        <?php
+            if (isset($message)) {
+                echo ($message);
+            }
+        ?>
+
+        <form id="addClassification" action="/phpmotors/vehicles/index.php" method="post">
+            <label for="classificationName">New Classification Name</label>
+            <input type="text" id="classificationName" name="classificationName">
+            <br />
+            <input type="submit" name="submit" id="addbtn" value="Add Classification">
+            <input type="hidden" name="action" value="addClassification">
+        </form>
     </main>
     
     <hr>

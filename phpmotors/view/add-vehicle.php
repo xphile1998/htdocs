@@ -43,14 +43,6 @@
                 <textarea rows="5" cols="30" id="invDescription" name="invDescription" size="30"></textarea>
                 <p></p>
 
-                <!-- <label for="invImage">Enter in the URL for the vehicle Image</label>
-                <input type="text" id="invImage" name="InvImage" value="/phpmotors/images/no-image.png" size="30">
-                <p></p>
-
-                <label for="invThumbnail">Enter in the URL for the vehicle Thumbnail</label>
-                <input type="text" id="invThumbnail" name="invThumbnail" value="/phpmotors/images/no-image.png" size="30">
-                <p></p> -->
-
                 <label for="invPrice">Enter in the Price of the vehicle</label>
                 <input type="number" id="invPrice" name="invPrice" size="30">
                 <p></p>
@@ -64,14 +56,11 @@
                 <p></p>
 
                 <label for="classificationId">Enter in the Classisfication</label>
-                <!-- <input type="number" id="classificationId" name="classificationId" min="1" max="5"> -->
-                <select id="classificationId" name="classificationId">
-                    <option value="1">SUV</option>
-                    <option value="2">Classic</option>
-                    <option value="3">Sports</option>
-                    <option value="4">Trucks</option>
-                    <option value="5">Used</option>
-                </select>
+                <?php 
+                    if (!empty($selectList)) {
+                        echo $selectList; 
+                    }
+                ?>
                 <p></p>
                 <p></p>
                 

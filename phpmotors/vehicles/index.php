@@ -17,7 +17,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/vehicles-model.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
-$classificationList = getClassificationList();
+$classificationsList = getClassificationList();
 
 // Default Page Title
 $pageTitle = 'Accounts';
@@ -29,6 +29,13 @@ foreach ($classifications as $classification) {
     $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
 }
 $navList .= '</ul>';
+
+// Build a Select List for classificationName for adding a vehicle
+$selectList = "<select id='classificationId' name='classificationId'>";
+    foreach ($classificationsList as $selectItem) {
+        $selectList .= "<option value='$selectItem[classificationId]'>$selectItem[classificationName]</option>";
+    }
+$selectList .= "</select>";
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -74,34 +81,30 @@ switch ($action) {
         
         break;
 
-    case 'registerUser':
-        // Collect, filter, and store the user data
-        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
-        $clientLastname = filter_input(INPUT_POST, 'clientLastname');
-        $clientEmail = filter_input(INPUT_POST, 'clientEmail');
-        $clientPassword = filter_input(INPUT_POST, 'clientPassword');
-
-        // Check to see if there is any missing data
-        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
-            $message = '<p class="message">Please provide all the information for all empty fields.</p>';
-            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/registration.php';
+    case 'addClassification':
+        // Collect the data for this case
+        $classificationName = filter_input(INPUT_POST, 'classificationName');
+        
+        // Check if input is empty
+        if (empty($classificationName)) {
+            $message = '<p class="message">Please be sure to fill out the entire form before submitting.</p>';
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/add-classification.php';
             exit;
-        }
-
-        // Send the data to the database
-        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
-
-        // Check out the result of the INSERT into the database
-        if ($regOutcome === 1) {
-            $message = '<p class="message">Thanks for registering $clientFirstname. Please use your email and password to login.</p>';
-            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
-            exit;
-        } else {
-            $message = '<p class="message">Sorry, $clientFirstname, but the registration failed. Please try again.</p>';
-            include $_SERVER['DOCUMNET_ROOT'] . '/phpmotors/view/registration.php';
-            exit; 
         }
         
+        $addClassificationOutcome = addClassification($classificationName);
+
+        // Check for the insertion into the database
+        if ($addClassificationOutcome === 1) {
+            $message = '<p class="message">Thank you for adding $classificationName.</p>';
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/vehicle-man.php';
+            exit;
+        } else {
+            $message = '<p class="message">Sorry, but adding $classificationName failed. Please try again.</p>';
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/add-classification.php';
+            exit;
+        }
+
         break;
 
     default:
