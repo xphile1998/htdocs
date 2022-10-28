@@ -31,12 +31,18 @@
 
             <form method="post" class="login_form">
                 <label for="email">Email Address</label>
-                <input type="text" id="email" name="clientEmail">
+                <input type="email" id="email" name="clientEmail" <?php 
+                if (isset($clientEmail)) {
+                    echo "value='$clientEmail'";
+                }
+                ?> required>
 
                 <label for="password">Password</label>
-                <input type="password" id="password" name="clientPassword">
+                <span>Passwords must at least 8 characters and contain at least 1 number, 1 captial letter, and 1 special character.</span>
+                <input type="password" id="password" name="clientPassword" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
                 <br />
                 <input type="submit" value="Sign-in">
+                <input type="hidden" name="action" value="Login">
             </form>
             <br />
             <p><a href="/phpmotors/accounts/?action=deliverRegisterView" id="toreg">Not a member yet?</a></p>

@@ -10,10 +10,12 @@
 ||    + Database connection file                        ||
 ||    + Main Model file                                 ||
 ||    + Accounts Model file                             ||
+||    + Functions library file
 \\======================================================*/
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/connections.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/main-model.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/accounts-model.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/functions.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -51,13 +53,15 @@ switch ($action) {
         
     case 'registerUser':
         // Collect, filter, and store the user data
-        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname');
-        $clientLastname = filter_input(INPUT_POST, 'clientLastname');
-        $clientEmail = filter_input(INPUT_POST, 'clientEmail');
-        $clientPassword = filter_input(INPUT_POST, 'clientPassword');
+        $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientLastname = trim(filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = checkEmail($clientEmail);
+        $checkPassword = checkPassword($clientPassword);
 
         // Check to see if there is any missing data
-        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($clientPassword)) {
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) {
             $message = "<p class='message'>Please provide all the information for all empty fields.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/registration.php';
             exit;
@@ -77,6 +81,21 @@ switch ($action) {
             exit; 
         }
         
+        break;
+    
+    case 'Login': 
+        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = checkEmail($clientEmail);
+        $checkPassword = checkPassword($clientPassword);
+
+        // Check to see if there is any missing data
+        if (empty($clientEmail) || empty($checkPassword)) {
+            $message = "<p class='message'>Please provide all the information for all empty fields.</p>";
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
+            exit;
+        }
+
         break;
 
     default:
