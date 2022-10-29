@@ -67,8 +67,11 @@ switch ($action) {
             exit;
         }
 
+        // Hash the password 
+        $hashedPassword = password_hash($checkPassword, PASSWORD_DEFAULT);
+        
         // Send the data to the database
-        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $clientPassword);
+        $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
 
         // Check out the result of the INSERT into the database
         if ($regOutcome === 1) {
