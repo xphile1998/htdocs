@@ -32,8 +32,8 @@
         <p class="welcome">Welcome to Vehicle Managment! What would you like to do today?</p>
 
         <ol class="vManageMenu">
-            <li><a href="/phpmotors/vehicles/index.php?action=addClassification">Add a Classification</a></li>
-            <li><a href="/phpmotors/vehicles/index.php?action=addVehicle">Add a Vehicle</a></li>
+            <li><a href="/phpmotors/vehicles/index.php?action=deliverAddClassification">Add a Classification</a></li>
+            <li><a href="/phpmotors/vehicles/index.php?action=deliverAddVehicle">Add a Vehicle</a></li>
         </ol>
         
     </main>

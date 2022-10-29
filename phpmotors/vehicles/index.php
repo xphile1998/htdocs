@@ -10,10 +10,12 @@
 ||    + Database connection file                        ||
 ||    + Main Model file                                 ||
 ||    + Vehicles Model file                             ||
+||    + Functions file
 \\======================================================*/
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/connections.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/main-model.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/vehicles-model.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/functions.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
@@ -30,12 +32,12 @@ foreach ($classifications as $classification) {
 }
 $navList .= '</ul>';
 
-// Build a Select List for classificationName for adding a vehicle
-$selectList = "<select id='classificationId' name='classificationId'>";
-    foreach ($classificationsList as $selectItem) {
-        $selectList .= "<option value='$selectItem[classificationId]'>$selectItem[classificationName]</option>";
-    }
-$selectList .= "</select>";
+// // Build a Select List for classificationName for adding a vehicle
+// $selectList = "<select id='classificationId' name='classificationId'>";
+//     foreach ($classificationsList as $selectItem) {
+//         $selectList .= "<option value='$selectItem[classificationId]'>$selectItem[classificationName]</option>";
+//     }
+// $selectList .= "</select>";
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
@@ -48,13 +50,13 @@ switch ($action) {
         // echo "<script>console.log('Debug Point: Adding Vehicle - Entered');</script>";
         
         // Collect, filter, and store user data
-        $invMake = filter_input(INPUT_POST, 'invMake');
-        $invModel = filter_input(INPUT_POST, 'invModel');
-        $invDescription = filter_input(INPUT_POST, 'invDescription');
-        $invPrice = filter_input(INPUT_POST, 'invPrice');
-        $invStock = filter_input(INPUT_POST, 'invStock');
-        $invColor = filter_input(INPUT_POST, 'invColor');
-        $classificationId = filter_input(INPUT_POST, 'classificationId');
+        $invMake = trim(filter_input(INPUT_POST, 'invMake', FILTER_SANITIZE_STRING));
+        $invModel = trim(filter_input(INPUT_POST, 'invModel', FILTER_SANITIZE_STRING));
+        $invDescription = trim(filter_input(INPUT_POST, 'invDescription', FILTER_SANITIZE_STRING));
+        $invPrice = trim(filter_input(INPUT_POST, 'invPrice', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
+        $invStock = trim(filter_input(INPUT_POST, 'invStock', FILTER_SANITIZE_NUMBER_INT));
+        $invColor = trim(filter_input(INPUT_POST, 'invColor', FILTER_SANITIZE_STRING));
+        $classificationId = trim(filter_input(INPUT_POST, 'classificationId', ));
 
         // What is the state of the values sent over?
         // echo "<script>console.log(`$invMake, $invModel, $invDescription, $invPrice, $invStock, $invColor, $classificationId`);</script>";
@@ -81,9 +83,19 @@ switch ($action) {
         
         break;
 
+    case 'deliverAddVehicle':
+        $pageTitle = 'Add Vehicle';
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/add-vehicle.php';
+        break;
+
+    case 'deliverAddClassification':
+        $pageTitle = 'Add Classification';
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/add-classification.php';
+        break;
+
     case 'addClassification':
         // Collect the data for this case
-        $classificationName = filter_input(INPUT_POST, 'classificationName');
+        $classificationName = trim(filter_input(INPUT_POST, 'classificationName', FILTER_SANITIZE_STRING));
         
         // Check if input is empty
         if (empty($classificationName)) {
