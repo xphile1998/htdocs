@@ -20,24 +20,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/functions.php';
 // Get the array of classifications
 $classifications = getClassifications();
 $classificationsList = getClassificationList();
+$navList = buildNavList($classifications);
 
 // Default Page Title
 $pageTitle = 'Vehicles';
 
-// Build a navigation bar using the $classifications arrary
-$navList = '<ul>';
-$navList .= "<li><a href='/phpmotors/index.php' title='View the PHP Motors home page'>Home</a></li>";
-foreach ($classifications as $classification) {
-    $navList .= "<li><a href='/phpmotors/index.php?action=" . urlencode($classification['classificationName']) . "' title='View our $classification[classificationName] product line'>$classification[classificationName]</a></li>";
-}
-$navList .= '</ul>';
-
-// // Build a Select List for classificationName for adding a vehicle
-// $selectList = "<select id='classificationId' name='classificationId'>";
-//     foreach ($classificationsList as $selectItem) {
-//         $selectList .= "<option value='$selectItem[classificationId]'>$selectItem[classificationName]</option>";
-//     }
-// $selectList .= "</select>";
+// Build a Select List for classificationName for adding a vehicle
+$selectList = "<select id='classificationId' name='classificationId'>";
+    foreach ($classificationsList as $selectItem) {
+        $selectList .= "<option value='$selectItem[classificationId]'>$selectItem[classificationName]</option>";
+    }
+$selectList .= "</select>";
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == NULL) {
