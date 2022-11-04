@@ -43,7 +43,7 @@ switch ($action) {
         $pageTitle = 'User Registration Page';
         include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/registration.php';
         break;
-        
+
     case 'registerUser':
         // Collect, filter, and store the user data
         $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -52,6 +52,14 @@ switch ($action) {
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $clientEmail = checkEmail($clientEmail);
         $checkPassword = checkPassword($clientPassword);
+        $existingEmail = checkExistingEmail($clientEmail);
+
+        // Check to see if the email address already exists
+        if ($existingEmail) {
+            $message = '<p class="notice">That email address already exists. Do you want to login instead?</p>';
+            include '../view/login.php';
+            exit;
+        }
 
         // Check to see if there is any missing data
         if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail) || empty($checkPassword)) {
@@ -62,24 +70,25 @@ switch ($action) {
 
         // Hash the password 
         $hashedPassword = password_hash($checkPassword, PASSWORD_DEFAULT);
-        
+
         // Send the data to the database
         $regOutcome = regClient($clientFirstname, $clientLastname, $clientEmail, $hashedPassword);
 
         // Check out the result of the INSERT into the database
         if ($regOutcome === 1) {
+            setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
             $message = "<p class='message'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
             exit;
         } else {
             $message = "<p class='message'>Sorry, $clientFirstname, but the registration failed. Please try again.</p>";
             include $_SERVER['DOCUMNET_ROOT'] . '/phpmotors/view/registration.php';
-            exit; 
+            exit;
         }
-        
+
         break;
-    
-    case 'Login': 
+
+    case 'Login':
         $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $clientEmail = checkEmail($clientEmail);
