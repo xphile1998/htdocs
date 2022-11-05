@@ -185,7 +185,7 @@ textarea {
 || Class Formats                                                        ||
 ||======================================================================||
 */
-a.head_para {
+.head_para {
     font-family: var(--paragraph-font);
     font-size: 1.2rem;
     float: right;
