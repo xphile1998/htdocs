@@ -189,6 +189,9 @@ textarea {
     font-family: var(--paragraph-font);
     font-size: 1.2rem;
     float: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     padding-right: 40px;
     padding-top: 20px;
 }
@@ -225,6 +228,14 @@ div.ug_img {
 #head_logo {
     width: 100%;
     height: auto;
+}
+
+#header_link {
+    padding-left: 2rem;
+}
+
+#welcome {
+    color: var(--accent3-color);
 }
 
 #content_box {

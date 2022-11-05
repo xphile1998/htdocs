@@ -92,7 +92,7 @@ switch ($action) {
         $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $clientEmail = checkEmail($clientEmail);
-        $checkPassword = checkPassword($clientPassword);
+        // $checkPassword = checkPassword($clientPassword);
 
         // Check to see if there is any missing data
         if (empty($clientEmail) || empty($checkPassword)) {
@@ -100,6 +100,25 @@ switch ($action) {
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
             exit;
         }
+
+        // Query the client database to check that the email exists
+        $clientData = getClient($clientEmail);
+
+        // Verify the password against the hashed password
+        $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
+        // Return an error if the password does not match
+        if (!$hashCheck) {
+            $message = '<p class="message">Please check your password and try again.</p>';
+            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
+            exit;
+        }
+
+        // If the password passes check, proceed to log them in
+        $_SESSION['loggedin'] = TRUE;
+        array_pop($clientData);
+        $_SESSION['clientData'] = $clientData;
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/admin.php';
+        exit;
 
         break;
 
