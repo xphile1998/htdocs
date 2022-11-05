@@ -117,7 +117,8 @@ switch ($action) {
         $_SESSION['loggedin'] = TRUE;
         array_pop($clientData);
         $_SESSION['clientData'] = $clientData;
-        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/admin.php';
+        // include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/admin.php';
+        echo "<script>console.log('Debugging data:" . $clientData . "');</script>";
         exit;
 
         break;

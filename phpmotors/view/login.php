@@ -31,7 +31,7 @@
 
             <form method="post" class="login_form" action="/phpmotors/accounts/">
                 <label for="email">Email Address</label>
-                <input type="text" id="email" name="clientEmail" <?php 
+                <input type="email" id="email" name="clientEmail" <?php 
                 if (isset($clientEmail)) {
                     echo "value='$clientEmail'";
                 }
