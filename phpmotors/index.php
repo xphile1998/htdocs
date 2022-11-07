@@ -5,6 +5,9 @@
 ||                              ||
 \\==============================*/
 
+// Create or access a session
+session_start();
+
 /*======================================================\\
 ||  We are going to get the following support files:    ||
 ||    + Database connection file                        ||

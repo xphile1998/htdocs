@@ -5,6 +5,9 @@
 ||                              ||
 \\==============================*/
 
+// Create or access a session
+session_start();
+
 /*======================================================\\
 ||  We are going to get the following support files:    ||
 ||    + Database connection file                        ||
@@ -77,8 +80,10 @@ switch ($action) {
         // Check out the result of the INSERT into the database
         if ($regOutcome === 1) {
             setcookie('firstname', $clientFirstname, strtotime('+1 year'), '/');
-            $message = "<p class='message'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
-            include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
+            // $message = "<p class='message'>Thanks for registering $clientFirstname. Please use your email and password to login.</p>";
+            $_SESSION['message'] = 'Thanks for registering $clientFirstname. Please use your email and password to login.';
+            // include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
+            header('Location: /phpmotors/accounts/?action=login');
             exit;
         } else {
             $message = "<p class='message'>Sorry, $clientFirstname, but the registration failed. Please try again.</p>";
@@ -88,14 +93,14 @@ switch ($action) {
 
         break;
 
-    case 'Login':
+    case 'login':
         $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
         $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
         $clientEmail = checkEmail($clientEmail);
-        // $checkPassword = checkPassword($clientPassword);
+        $passwordCheck = checkPassword($clientPassword);
 
         // Check to see if there is any missing data
-        if (empty($clientEmail) || empty($checkPassword)) {
+        if (empty($clientEmail) || empty($passwordCheck)) {
             $message = "<p class='message'>Please provide all the information for all empty fields.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
             exit;
@@ -117,8 +122,9 @@ switch ($action) {
         $_SESSION['loggedin'] = TRUE;
         array_pop($clientData);
         $_SESSION['clientData'] = $clientData;
+        include '../view/admin.php';
         // include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/admin.php';
-        echo "<script>console.log('Debugging data:" . $clientData . "');</script>";
+        // echo "<script>console.log('Debugging data:" . $clientData . "');</script>";
         exit;
 
         break;
