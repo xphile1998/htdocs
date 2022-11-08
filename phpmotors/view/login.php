@@ -42,7 +42,7 @@
                 <input type="password" id="password" name="clientPassword" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
                 <br />
                 <input type="submit" value="Sign-in">
-                <input type="hidden" name="action" value="Login">
+                <input type="hidden" name="action" value="login">
             </form>
             <br />
             <p><a href="/phpmotors/accounts/?action=deliverRegisterView" id="toreg">Not a member yet?</a></p>
