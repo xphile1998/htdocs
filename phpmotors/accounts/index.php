@@ -27,19 +27,15 @@ $navList = buildNavList($classifications);
 // Default Page Title
 $pageTitle = 'Accounts';
 
-$action = filter_input(INPUT_POST, 'action');
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
 if ($action == NULL) {
-    $action = filter_input(INPUT_GET, 'action');
+    $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 }
 
 switch ($action) {
     case 'deliverLoginView':
         $pageTitle = 'Sign In Page';
         include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
-        break;
-
-    case 'loginUser':
-        echo "You've made it to the LOGIN USER switch case.";
         break;
 
     case 'deliverRegisterView':
@@ -94,14 +90,19 @@ switch ($action) {
         break;
 
     case 'login':
-        $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
-        $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        // $clientEmail = trim(filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL));
+        // $clientPassword = trim(filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+        $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
         $clientEmail = checkEmail($clientEmail);
+        
+        $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
         $passwordCheck = checkPassword($clientPassword);
+        
+        // $existingEmail = checkExistingEmail($clientEmail);
 
-        // Check to see if there is any missing data
+                // Check to see if there is any missing data
         if (empty($clientEmail) || empty($passwordCheck)) {
-            $message = "<p class='message'>Please provide all the information for all empty fields.</p>";
+            $_SESSION['message'] = "<p class='message'>Please provide all the information for all empty fields.</p>";
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
             exit;
         }
@@ -113,23 +114,27 @@ switch ($action) {
         $hashCheck = password_verify($clientPassword, $clientData['clientPassword']);
         // Return an error if the password does not match
         if (!$hashCheck) {
-            $message = '<p class="message">Please check your password and try again.</p>';
+            $_SESSION['message'] = '<p class="message">Please check your password and try again.</p>';
             include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/login.php';
             exit;
         }
 
-        // If the password passes check, proceed to log them in
+        // A valid user exists, log them in
         $_SESSION['loggedin'] = TRUE;
+        // Remove the password from the array
+        // the array_pop function removes the last
+        // element from an array
         array_pop($clientData);
+        // Store the array into the session
         $_SESSION['clientData'] = $clientData;
-        // include '../view/admin.php';
-        // include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/admin.php';
-        echo "<script>console.log('Debugging data:" . $clientData . "');</script>";
+        // Send them to the admin view
+        include '../view/admin.php';
         exit;
 
-        break;
+        // break;
 
     default:
         // echo 'There is currently nothing for this to go to as a default. Sorry!';
+        include '../view/admin.php';
         break;
 }
