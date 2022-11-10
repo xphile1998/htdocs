@@ -23,14 +23,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/functions.php';
 $classifications = getClassifications();
 $navList = buildNavList($classifications);
 
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+if ($action == NULL) {
+    $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+}
+
 // Check if the firstname cookie exists, get its value
 if (isset($_COOKIE['firstname'])) {
     $cookieFirstname = filter_input(INPUT_COOKIE, 'firstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-}
-
-$action = filter_input(INPUT_POST, 'action');
-if ($action == NULL) {
-    $action = filter_input(INPUT_GET, 'action');
 }
 
 switch ($action) {
@@ -42,3 +42,4 @@ switch ($action) {
         include 'view/home.php';
         break;
 }
+?>
