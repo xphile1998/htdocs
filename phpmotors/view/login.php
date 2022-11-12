@@ -24,12 +24,12 @@
             <h1 class="account-heading">Sign in</h1>
 
             <?php
-                if (isset($message)) {
-                    echo $message;
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
                 }
             ?>
 
-            <form method="post" class="login_form" action="/phpmotors/accounts/">
+            <form class="login_form" method="post" action="/phpmotors/accounts/">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="clientEmail" <?php 
                 if (isset($clientEmail)) {
