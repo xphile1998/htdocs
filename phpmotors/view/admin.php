@@ -1,8 +1,8 @@
 <?php
-// if (!$_SESSION['loggedin']) {
-//     header('Location: /phpmotors/');
-//     exit;
-// }
+if (!$_SESSION['loggedin']) {
+    header('Location: /phpmotors/');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en-US">

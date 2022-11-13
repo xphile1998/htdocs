@@ -1,4 +1,9 @@
-<?php 
+<?php
+if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
+    header('Location: /phpmotors/');
+    exit;
+}
+
 // Build a Select List for classificationName for adding a vehicle
 $selectList = "<select id='classificationId' name='classificationId'>";
     foreach ($classificationsList as $selectItem) {
@@ -11,7 +16,8 @@ $selectList = "<select id='classificationId' name='classificationId'>";
         $selectList .= ">$selectItem[classificationName]</option>";
     }
 $selectList .= "</select>";
-?><!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en-US">
 
 <head>
