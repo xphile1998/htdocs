@@ -14,5 +14,13 @@
             ?>
         </a>
     </div>
-    <a id="header_link" href="accounts/?action=deliverLoginView" title="Login or Register with PHP Motors">My Account</a>
+    <div id="header_link">
+        <?php
+        if (isset($_SESSION['loggedin'])) {
+            ?>
+            <a href="/phpmotors/accounts/?action=logout">Logout</a>
+        <?php } else { ?>
+            <a href="accounts/?action=deliverLoginView" title="Login or Register with PHP Motors">My Account</a>
+        <?php } ?>
+    </div>
 </div>

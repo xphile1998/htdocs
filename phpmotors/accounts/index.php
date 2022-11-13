@@ -106,14 +106,9 @@ switch ($action) {
         $clientData = getClient($clientEmail);
         // Compare the password just submitted against the hashed password for the matching client
         $hashCheck = password_verify("$clientPassword", $clientData['clientPassword']);
-        // console_log("Password Verify");
-        // console_log($hashCheck);
-        // console_log("clientPassword");
-        // console_log($clientPassword);
-        // console_log("clientData password");
-        // console_log($clientData['clientPassword']);
 
         // If the hashes don't match create an error and return to the login view
+        // THIS CODE IS NOT WORKING AND CAUSES THE PAGE TO NOT FUNCTION -- NEED TO FIX?
         // if (!$hashCheck) {
         //     $_SESSION['message'] = '<p class="message">Please check your password and try again.</p>';
         //     include '../view/login.php';
@@ -132,6 +127,13 @@ switch ($action) {
         include '../view/admin.php';
         exit;
 
+        break;
+
+    case "logout":
+        session_destroy();
+        unset($_SESSION);
+        setcookie('PHPSESSID', '', strtotime('-1 hour'), '/');
+        header('Location: /phpmotors/');
         break;
 
     default:

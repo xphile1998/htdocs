@@ -27,7 +27,20 @@
         </nav>
 
         <main>
-            <h1><?php echo $_SESSION['clientData']['clientFirstname']; ?></h1>
+            <h1><?php echo $_SESSION['clientData']['clientFirstname'].' '.$_SESSION['clientData']['clientLastname']; ?></h1>
+
+            <ul class="client_data">
+                <li>First Name: <?php echo $_SESSION['clientData']['clientFirstname']; ?></li>
+                <li>Last Name: <?php echo $_SESSION['clientData']['clientLastname']; ?></li>
+                <li>Email Address: <?php echo $_SESSION['clientData']['clientEmail']; ?></li>
+                <li>Client Level: <?php echo $_SESSION['clientData']['clientLevel']; ?></li>
+            </ul>
+
+            <?php 
+            if ($_SESSION['clientData']['clientLevel'] > 1) { ?>
+                <p><a href="../vehicles/">Vehicles Management</a></p>
+
+            <?php } ?>
         </main>
 
         <hr>
