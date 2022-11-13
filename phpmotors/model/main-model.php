@@ -5,7 +5,8 @@
 ||                          ||
 \\==========================*/
 
-function getClassifications() {
+function getClassifications()
+{
     // Create a connection object from the phpmotors connection function
     $db = phpmotorsConnect();
     // The SQL query to be used with the database

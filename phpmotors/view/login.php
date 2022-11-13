@@ -29,7 +29,7 @@
                 }
             ?>
 
-            <form class="login_form" method="post" action="/phpmotors/accounts/">
+            <form method="post" action="/phpmotors/accounts/">
                 <label for="email">Email Address</label>
                 <input type="email" id="email" name="clientEmail" <?php 
                 if (isset($clientEmail)) {
@@ -42,7 +42,7 @@
                 <input type="text" id="password" name="clientPassword" pattern="(?=^.{8,}$)(?=.*\d)(?=.*\W+)(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
                 <br />
                 <input type="submit" name="submit" value="Sign-in">
-                <input type="hidden" name="action" value="login">
+                <input type="hidden" name="action" value="Login">
             </form>
             <br />
             <p><a href="/phpmotors/accounts/?action=deliverRegisterView" id="toreg">Not a member yet?</a></p>
