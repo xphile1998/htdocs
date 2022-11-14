@@ -19,7 +19,7 @@ function checkEmail($clientEmail)
 function checkPassword($clientPassword)
 {
     $pattern = '/^(?=.*[[:digit:]])(?=.*[[:punct:]\s])(?=.*[A-Z])(?=.*[a-z])(?:.{8,})$/';
-    
+
     return preg_match($pattern, $clientPassword);
 }
 
@@ -36,6 +36,19 @@ function buildNavList($classifications)
     return $navList;
 }
 
+// Build the classifications select list 
+function buildClassificationList($classifications)
+{
+    $classificationList = '<select name="classificationId" id="classificationList">';
+    $classificationList .= "<option>Choose a Classification</option>";
+    foreach ($classifications as $classification) {
+        $classificationList .= "<option value='$classification[classificationId]'>$classification[classificationName]</option>";
+    }
+    $classificationList .= '</select>';
+    return $classificationList;
+}
+
+// Prints a variable out to the console
 function console_log($output, $with_script_tags = true)
 {
     $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
@@ -46,6 +59,7 @@ function console_log($output, $with_script_tags = true)
     echo $js_code;
 }
 
+// Prints an array or object out to the console
 function console_table($output, $with_script_tags = true)
 {
     $js_code = 'console.table(' . json_encode($output, JSON_HEX_TAG) .
