@@ -129,8 +129,9 @@ switch ($action) {
         break;
 
     default:
-        $pageTitle = 'Vehicle Management Page';
+        // $pageTitle = 'Vehicle Management Page';
         $classificationList = buildClassificationList($classifications);
         include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/vehicle-man.php';
+        exit;
         break;
 }

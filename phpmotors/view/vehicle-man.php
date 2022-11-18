@@ -1,5 +1,6 @@
 <?php
-if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
+// !$_SESSION['loggedin'] || 
+if ($_SESSION['clientData']['clientLevel'] < 2) {
     header('Location: /phpmotors/');
     exit;
 }
@@ -56,7 +57,7 @@ if (!$_SESSION['loggedin'] || $_SESSION['clientData']['clientLevel'] < 2) {
             <noscript>
                 <p><strong>JavaScript Must Be Enabled to Use this Page.</strong></p>
             </noscript>
-            
+
             <table id="inventoryDisplay"></table>
         </main>
 
