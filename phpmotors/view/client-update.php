@@ -32,6 +32,7 @@ if (!$_SESSION['loggedin']) {
             <?php
             if (isset($_SESSION['message'])) {
                 echo $_SESSION['message'];
+                // unset($_SESSION['message']);
             }
             ?>
 
@@ -67,10 +68,10 @@ if (!$_SESSION['loggedin']) {
 
             <h2>Update Password</h2>
             <?php
-            if (isset($_SESSION['message'])) {
-                echo $_SESSION['message'];
-            }
-            ?>
+            // if (isset($_SESSION['message'])) {
+            //     echo $_SESSION['message'];
+            // }
+            // ?>
             <form method="post" action="/phpmotors/accounts/">
                 <span>Passwords must be at least 8 characters long and contain at least 1 number, 1 capital letter, and 1 special character</span>
                 <p class="message">Note: Your original password will be changed.</p>

@@ -149,7 +149,7 @@ switch ($action) {
 
             // check for an existing email in the database
             if ($existingEmail) {
-                $_SESSION['message'] = '<p class="message"> That email address already exists. Please choose another.</p>';
+                $_SESSION['message'] = '<p class="message">That email address already exists. Please choose another.</p>';
                 include '../view/client-update.php';
                 exit;
             }
@@ -157,7 +157,7 @@ switch ($action) {
 
         // check for missing data
         if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) {
-            $_SESSION['message'] = '<p class="message"> Please provide information for all empty fields.</p>';
+            $_SESSION['message'] = '<p class="message">Please provide information for all empty fields.</p>';
             include '../view/client-update.php';
             exit;
         }
@@ -168,11 +168,12 @@ switch ($action) {
         // Check and report the result
         if ($updateOutcome) {
             $_SESSION['clientData'] = getAccountByID($clientId);
-            $_SESSION['message'] = '<p class="message">$clientFirstname, your information has been updated.</p>';
+            $clientFirstname = $_SESSION['clientData']['clientFirstname'];
+            $_SESSION['message'] = "<p class='message'>$clientFirstname, your information has been updated.</p>";
             header('Location: /phpmotors/accounts/');
             exit;
         } else {
-            $_SESSION['message'] = '<p class="message">$clientFirstname, we could not update your account information. Please try again.</p>';
+            $_SESSION['message'] = "<p class='message'>We could not update your account information. Please try again.</p>";
             include '../view/client-update.php';
             exit;
         }
@@ -205,11 +206,11 @@ switch ($action) {
 
         if ($updatePass) {
             $clientFirstname = $_SESSION['clientData']['clientFirstname'];
-            $_SESSION['message'] = '<p class="message">$clientFirstname, your password has been updated.</p>';
+            $_SESSION['message'] = "<p class='message'>$clientFirstname, your password has been updated.</p>";
             header('Location: /phpmotors/accounts/');
             exit;
         } else {
-            $_SESSION['message'] = '<p class="message">$clientFirstname, an error occurred and your password could not be updated.</p>';
+            $_SESSION['message'] = "<p class='message'>An error occurred and your password could not be updated.</p>";
             exit;
         }
 
