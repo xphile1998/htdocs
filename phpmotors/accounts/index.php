@@ -211,6 +211,7 @@ switch ($action) {
             exit;
         } else {
             $_SESSION['message'] = "<p class='message'>An error occurred and your password could not be updated.</p>";
+            include '../view/client-update.php';
             exit;
         }
 
