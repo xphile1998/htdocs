@@ -27,14 +27,18 @@ if (!$_SESSION['loggedin']) {
         </nav>
 
         <main>
-            <h1><?php echo $_SESSION['clientData']['clientFirstname'].' '.$_SESSION['clientData']['clientLastname']; ?></h1>
+            <h1>You are logged in as <?php echo $_SESSION['clientData']['clientFirstname'].' '.$_SESSION['clientData']['clientLastname']; ?>.</h1>
 
             <ul class="client_data">
                 <li>First Name: <?php echo $_SESSION['clientData']['clientFirstname']; ?></li>
                 <li>Last Name: <?php echo $_SESSION['clientData']['clientLastname']; ?></li>
                 <li>Email Address: <?php echo $_SESSION['clientData']['clientEmail']; ?></li>
-                <li>Client Level: <?php echo $_SESSION['clientData']['clientLevel']; ?></li>
+                <!-- <li>Client Level: <?php echo $_SESSION['clientData']['clientLevel']; ?></li> -->
             </ul>
+
+            <a href="/phpmotors/accounts/?action=deliverUpdateView">Update your account information/Change password</a>
+
+            <h2>Vehicle Management</h2>
 
             <?php 
             if ($_SESSION['clientData']['clientLevel'] > 1) { ?>

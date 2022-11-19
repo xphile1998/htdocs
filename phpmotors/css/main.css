@@ -81,6 +81,12 @@ body {
     padding: 1em;
     align-content: center;
     background-image: url("/phpmotors/images/site/small_check.jpg");
+    font-family: var(--paragraph-font);
+}
+
+a {
+    font-family: var(--paragraph-font);
+    font-size: 1.25rem;
 }
 
 h1 {

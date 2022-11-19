@@ -43,6 +43,11 @@ switch ($action) {
         include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/registration.php';
         break;
 
+    case 'deliverUpdateView':
+        $pageTitle = 'Sign In Page';
+        include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/client-update.php';
+        break;
+
     case 'registerUser':
         // Collect, filter, and store the user data
         $clientFirstname = trim(filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
@@ -126,6 +131,87 @@ switch ($action) {
         // Send them to the admin view
         include '../view/admin.php';
         exit;
+
+        break;
+
+    case 'updateAccount':
+        $clientFirstname = filter_input(INPUT_POST, 'clientFirstname', FILTER_SANITIZE_STRING);
+        $clientLastname = filter_input(INPUT_POST, 'clientLastname', FILTER_SANITIZE_STRING);
+        $clientEmail = filter_input(INPUT_POST, 'clientEmail', FILTER_SANITIZE_EMAIL);
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+
+        if ($clientEmail != $_SESSION['clientData']['clientEmail']) {
+            // check that values are the correct format
+            $clientEmail = checkEmail($clientEmail);
+
+            // check if the email exists
+            $existingEmail = checkExistingEmail($clientEmail);
+
+            // check for an existing email in the database
+            if ($existingEmail) {
+                $_SESSION['message'] = '<p class="message"> That email address already exists. Please choose another.</p>';
+                include '../view/client-update.php';
+                exit;
+            }
+        }
+
+        // check for missing data
+        if (empty($clientFirstname) || empty($clientLastname) || empty($clientEmail)) {
+            $_SESSION['message'] = '<p class="message"> Please provide information for all empty fields.</p>';
+            include '../view/client-update.php';
+            exit;
+        }
+
+        // Send data to the model
+        $updateOutcome = updateClient($clientFirstname, $clientLastname, $clientEmail, $clientId);
+
+        // Check and report the result
+        if ($updateOutcome) {
+            $_SESSION['clientData'] = getAccountByID($clientId);
+            $_SESSION['message'] = '<p class="message">$clientFirstname, your information has been updated.</p>';
+            header('Location: /phpmotors/accounts/');
+            exit;
+        } else {
+            $_SESSION['message'] = '<p class="message">$clientFirstname, we could not update your account information. Please try again.</p>';
+            include '../view/client-update.php';
+            exit;
+        }
+
+        break;
+
+    case 'updatePassword':
+        $clientPassword = filter_input(INPUT_POST, 'clientPassword', FILTER_SANITIZE_STRING);
+        $clientId = filter_input(INPUT_POST, 'clientId', FILTER_SANITIZE_NUMBER_INT);
+        $checkPassword = checkPassword($clientPassword);
+
+        if (empty($clientPassword) || empty($checkPassword)) {
+            $_SESSION['message'] = '<p class="message">Please make sure that your password matches the required pattern.</p>';
+            include '../view/client-update.php';
+            exit;
+        }
+
+        // if (!empty($clientPassword) && $checkPassword) {
+        //     // Hash the checked password
+        //     $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+
+        //     // Update password
+        //     $updatePass = updatePassword($hashedPassword, $clientId);
+
+        // Hash the checked password
+        $hashedPassword = password_hash($clientPassword, PASSWORD_DEFAULT);
+
+        // Update password
+        $updatePass = updatePassword($hashedPassword, $clientId);
+
+        if ($updatePass) {
+            $clientFirstname = $_SESSION['clientData']['clientFirstname'];
+            $_SESSION['message'] = '<p class="message">$clientFirstname, your password has been updated.</p>';
+            header('Location: /phpmotors/accounts/');
+            exit;
+        } else {
+            $_SESSION['message'] = '<p class="message">$clientFirstname, an error occurred and your password could not be updated.</p>';
+            exit;
+        }
 
         break;
 
