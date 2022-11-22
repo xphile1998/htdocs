@@ -143,6 +143,22 @@ switch ($action) {
         include '../view/classification.php';
         break;
 
+    case 'vehicleView':
+        $vehicleIdNum = filter_input(INPUT_GET, 'vehicleId', FILTER_SANITIZE_NUMBER_INT);
+        $vehicleInfo = getVehicleInfo($vehicleIdNum);
+
+        $_SESSION['message'] = null;
+
+        if (!$vehicleInfo) {
+            $_SESSION['message'] = '<p class="message">Sorry, there was no vehicle information avaialable.</p>';
+        } else {
+            $vehicle = vehicleDetailsPage($vehicleInfo);
+        }
+        console_log("Moving to Vehicle-Detail page.");
+        include '../view/vehicle-detail.php';
+
+        break;
+
     default:
         // $pageTitle = 'Vehicle Management Page';
         $classificationList = buildClassificationList($classifications);
