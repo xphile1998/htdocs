@@ -7,7 +7,8 @@
 \\==========================*/
 
 // Create a dynamic list of the car classifications
-function getClassificationList() {
+function getClassificationList()
+{
     $db = phpmotorsConnect();
     $sql = 'SELECT classificationId, classificationName FROM carclassification';
     $stmt = $db->prepare($sql);
@@ -27,7 +28,7 @@ function addVehicle($invMake, $invModel, $invDescription, $invPrice, $invStock, 
         VALUES (:invMake, :invModel, :invDescription, :invImage, :invThumbnail, :invPrice, :invStock, :invColor, :classificationId)';
     $invImage = "/phpmotors/images/no-image.png";
     $invThumbnail = "/phpmotors/images/no-image.png";
-    
+
     // Create the prepared statement using the phpmotors connection
     $stmt = $db->prepare($sql);
     // The next four lines replace the placeholders in the SQL statement with the actual values in the variables and tells the database the type of data it is
@@ -83,4 +84,16 @@ function getInventoryByClassification($classificationId)
     $inventory = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
     return $inventory;
+}
+
+function getVehiclesByClassification($classificationName)
+{
+    $db = phpmotorsConnect();
+    $sql = 'SELECT * FROM inventory WHERE classificationId IN (SELECT classificationId FROM carclassification WHERE classificationName = :classificationName)';
+    $stmt = $db->prepare($sql);
+    $stmt->bindValue(':classificationName', $classificationName, PDO::PARAM_STR);
+    $stmt->execute();
+    $vehicles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->closeCursor();
+    return $vehicles;
 }

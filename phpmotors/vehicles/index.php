@@ -128,6 +128,21 @@ switch ($action) {
         echo json_encode($inventoryArray);
         break;
 
+    case 'classification':
+        $classificationName = filter_input(INPUT_GET, 'classificationName', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $vehicles = getVehiclesByClassification($classificationName);
+        if (!count($vehicles)) {
+            $message = "<p class='message'>Sorry, no $classificationName vehicles could be found.</p>";
+        } else {
+            console_log("Moving to buildVehicleDisplay function");
+            $vehicleDisplay = buildVehiclesDisplay($vehicles);
+        }
+        // echo $vehicleDisplay;
+        console_table($vehicles);
+        // exit;
+        include '../view/classification.php';
+        break;
+
     default:
         // $pageTitle = 'Vehicle Management Page';
         $classificationList = buildClassificationList($classifications);
