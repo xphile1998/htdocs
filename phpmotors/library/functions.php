@@ -56,11 +56,13 @@ function buildVehiclesDisplay($vehicles)
 {
     $dv = '<ul id="inv-display">';
     foreach ($vehicles as $vehicle) {
-        $dv .= '<li>';
+        $dv .= '<li class="vehicle">';
+        $dv .= "<a href='/vehicles/?action=vehicleView&vehicleId=$vehicle[invId]'>";
         $dv .= "<img src='$vehicle[invThumbnail]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
         $dv .= '<hr>';
         $dv .= "<h2>$vehicle[invMake] $vehicle[invModel]</h2>";
         $dv .= "<span>$vehicle[invPrice]</span>";
+        $dv .= '</a>';
         $dv .= '</li>';
     }
     $dv .= '</ul>';

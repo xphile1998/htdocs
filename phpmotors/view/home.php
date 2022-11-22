@@ -34,7 +34,7 @@
                 <img id="own_btn" src="/phpmotors/images/site/own_today.png" alt="Own Today Button">
             </section>
             <div id="delo_pic">
-                <img src="/phpmotors/images/delorean.jpg" alt="DMC Delorean Coupe">
+                <img src="/phpmotors/images/vehicles/delorean2.jpg" alt="DMC Delorean Coupe">
             </div>
         </div>
 
