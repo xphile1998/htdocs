@@ -154,7 +154,7 @@ switch ($action) {
         } else {
             $vehicle = vehicleDetailsPage($vehicleInfo);
         }
-        console_log("Moving to Vehicle-Detail page.");
+        // console_log("Moving to Vehicle-Detail page.");
         include '../view/vehicle-detail.php';
 
         break;
