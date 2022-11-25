@@ -72,14 +72,16 @@ function buildVehiclesDisplay($vehicles)
 function vehicleDetailsPage($vehicle)
 {
     $price = number_format($vehicle['invPrice'], 2, ".", ",");
-    $dv = "<h1>$vehicle[invMake] $vehicle[invModel]</h1>";
-    $dv .= "<img src='$vehicle[invImage]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'>";
-    $dv .= "<p>Price: $$price</p>";
+    $dv = "<h1 id='carName'>$vehicle[invMake] $vehicle[invModel]</h1>";
+    $dv .= "<span id='photo'><img src='$vehicle[invImage]' alt='Image of $vehicle[invMake] $vehicle[invModel] on phpmotors.com'></span>";
+    $dv .= "<p id='price'>Price: $$price</p>";
     $dv .= '<hr>';
+    $dv .= "<div id='description'>";
     $dv .= "<h2>$vehicle[invMake] $vehicle[invModel] Details</h2>";
     $dv .= "<p>$vehicle[invDescription]</p>";
-    $dv .= "<p><b>Color: </b>$vehicle[invColor]</p>";
-    $dv .= "<p><b>Quantity in Stock: </b>$vehicle[invStock]</p>";
+    $dv .= "</div>";
+    $dv .= "<p id='carColor'><b>Color: </b>$vehicle[invColor]</p>";
+    $dv .= "<p id='quantity'><b>Quantity in Stock: </b>$vehicle[invStock]</p>";
     
     return $dv;
 }

@@ -333,22 +333,44 @@ div.ug_img {
 || Mobile Styles                                                        ||
 ||======================================================================||
 */
-#inv-display {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
+@media (max-width: 749px) {
+    html {
+        box-sizing: border-box;
+    }
 
-#inv-display li {
-    margin-bottom: .5em;
-    border: 1px #ccc solid;
-    list-style-type: none;
-    flex: 1 1 auto;
-}
+    *,
+    *:before,
+    *:after {
+        box-sizing: inherit;
+    }
 
-#inv-display li img {
-    max-width: 100%;
+    .inv-display {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .inv-display li {
+        margin-bottom: .5em;
+        border: 1px #ccc solid;
+        list-style-type: none;
+        flex: 1 1 auto;
+        border: 1px solid black;
+        width: 70%;
+        text-align: center;
+
+    }
+
+    .inv-display li img {
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
 }
 
 
@@ -357,27 +379,75 @@ div.ug_img {
 || Larger Screens                                                       ||
 ||======================================================================||
 */
-#inv-display {
-    flex-flow: row wrap;
-    justify-content: flex-start;
-}
+@media (min-width: 750px) {
 
-#inv-display h2{
-    font-size: 1rem;
-}
+    /* For vehicle display in classification view */
+    .inv-display {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        grid-template-rows: 10% 35% 35% 20%;
+        gap: 2px 2px;
+        grid-template-areas:
+            "carName carName"
+            "photo carColor"
+            "photo price"
+            "description quantity";
+    }
 
-#inv-display li {
-    max-width: 200px;
-    flex: 1 0 auto;
-    text-align: center;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-  
-#inv-display div {
-    width: 100%;
+    #carName {
+        grid-area: carName;
+        font-size: 2rem;
+        /* padding-bottom: 6px; */
+    }
+
+    #photo {
+        grid-area: photo;
+        width: 100%;
+        height: auto;
+    }
+
+    #description {
+        grid-area: description;
+        font-size: 2rem;
+    }
+
+    #carColor {
+        grid-area: carColor;
+    }
+
+    #price {
+        grid-area: price;
+    }
+
+    #quantity {
+        grid-area: quantity;
+    }
+
+    .inv-display h2 {
+        font-size: 1rem;
+    }
+
+    .inv-display li {
+        max-width: 200px;
+        flex: 1 0 auto;
+        text-align: center;
+        height: 250px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid black;
+        margin: 10px;
+    }
+
+    .inv-display div {
+        width: 100%;
+    }
+
+    /* img {
+        width: 100%;
+        height: auto;
+    } */
+
 }
 
 

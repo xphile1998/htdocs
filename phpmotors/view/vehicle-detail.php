@@ -8,6 +8,7 @@
     <link rel="stylesheet" media="screen" href="/phpmotors/css/normalize.css">
     <link rel="stylesheet" media="screen" href="/phpmotors/css/main.css">
     <link rel="stylesheet" media="screen" href="/phpmotors/css/medium.css">
+    <!-- <link rel="stylesheet" media="screen" href="/phpmotors/css/vehicle-detail.css"> -->
 </head>
 
 <body>
@@ -22,7 +23,9 @@
 
         <main>
             <!-- <h1>Content Title Here</h1> -->
-            <?php echo $vehicle; ?>
+            <div class="inv-display">
+                <?php echo $vehicle; ?>
+            </div>
         </main>
 
         <hr>
