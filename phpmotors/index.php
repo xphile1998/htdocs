@@ -21,11 +21,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/functions.php';
 
 // Get the array of classifications
 $classifications = getClassifications();
+// Build a navigation bar using the $classifications array
 $navList = buildNavList($classifications);
 
-$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_STRING);
+$action = filter_input(INPUT_POST, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 if ($action == NULL) {
-    $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
+    $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 }
 
 switch ($action) {
