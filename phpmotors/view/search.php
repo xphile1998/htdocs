@@ -22,6 +22,11 @@
 
     <main>
         <h1>Search Our Inventory</h1>
+
+        <form action="../search/?action='search'" method="post">
+            <input type="text" name="search" placeholder="Search for...">
+            <input type="submit" value="search">
+        </form>
     </main>
     
     <hr>

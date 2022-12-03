@@ -28,6 +28,6 @@
     </div>
     <div id="searchLink">
         <script src="https://kit.fontawesome.com/a5084cfc04.js" crossorigin="anonymous"></script>
-        <a href="search/?action=deliverSearch" title="Search our inventory"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="/phpmotors/search/?action=default" title="Search our inventory"><i class="fa-solid fa-magnifying-glass"></i></a>
     </div>
 </div>
