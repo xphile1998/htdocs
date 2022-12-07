@@ -27,5 +27,41 @@ function searchInv($search)
 
 function displaySearch($results)
 {
-    
+    // stuff
 }
+
+
+// function searchq($searchVal)
+// {
+//     $server = 'localhost';
+//     $username = 'iClient';
+//     $password = 'A)TkEQkiK)c!A!5a';
+//     $dbname = 'phpmotors';
+//     $output = '';
+
+//     $conn = mysqli_connect($server, $username, $password, $dbname);
+
+//     //collect
+//     if (isset($_POST[$searchVal])) {
+//         $searchq = $_POST[$searchVal];
+//         $searchq = preg_replace("#[^0-9a-z]#i", "", $searchq);
+
+//         $query = mysqli_query($conn, "SELECT * FROM members WHERE firstname LIKE '%$searchq%' OR lastname LIKE '%$searchq%'") or die("Could not search");
+//         $count = mysqli_num_rows($query);
+//         if ($count == 0) {
+//             $output = 'There was no search results';
+//         } else {
+//             while ($row = mysqli_fetch_array($query)) {
+//                 $make = $row['invMake'];
+//                 $model = $row['invModel'];
+//                 $description = $row['invDescription'];
+                
+//                 $output .= '<div class="searchResult">
+//                             <span class="resTitle">' . $make . ' ' . $model . '</span>
+//                             <span class="resDesc">' . $description . '</span>
+//                             </div>';
+//             }
+//         }
+//     }
+//     echo ($output);
+// }

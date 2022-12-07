@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
+    <title>Search Tutorial Page</title>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script type="text/javascript">
@@ -26,9 +26,7 @@
         <input type="submit" value="Search">
     </form>
 
-    <div id="output">
-
-    </div>
+    <div id="output"></div>
 </body>
 
 </html>
