@@ -34,7 +34,7 @@ if ($action == NULL) {
 }
 
 switch ($action) {
-    case "deliverSearch":
+    case "search":
 
         break;
 

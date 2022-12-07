@@ -28,6 +28,7 @@ Fonts are separated by a | */
     --accent2-color: var(--tufts-blue);
     --accent3-color: var(--jet);
     --accent4-color: var(--white);
+    --message-color: red;
 
     /* 
     || Site Fonts
@@ -125,6 +126,7 @@ header {
     background-color: var(--white);
     font-family: var(--heading-font);
     color: var(--headline-color-on-color);
+    border-radius: 10px;
 }
 
 nav {
@@ -205,6 +207,7 @@ textarea {
 }
 
 
+
 /* 
 ||======================================================================||
 || Class Formats                                                        ||
@@ -241,7 +244,7 @@ div.ug_img {
 }
 
 .message {
-    color: red;
+    color: var(--message-color);
     font-size: 1.5rem;
 }
 
@@ -252,6 +255,7 @@ div.ug_img {
 .vehicle {
     padding: 10px;
 }
+
 
 /* 
 ||======================================================================||
@@ -318,6 +322,13 @@ div.ug_img {
     flex-basis: 50%;
 }
 
+#inv-display {
+    list-style: none;
+}
+
+div#content_box img {
+    border-radius: 10px;
+}
 
 
 /* 
@@ -325,8 +336,48 @@ div.ug_img {
 || Form Formats                                                         ||
 ||======================================================================||
 */
+div form {
+    display: flex;
+    flex-direction: row;
+}
 
+#searchBtn {
+    display: flex;
+    justify-content: center;
+    background-color: var(--baby-blue-eyes);
+    color: var(--jet);
+    font-weight: 500;
+    border-radius: 4px;
+    margin-left: 10px;
+    width: 10%;
+    font-size: 1.5rem;
+}
 
+#searchBtn:hover {
+    background-color: var(--tufts-blue);
+    color: var(--white);
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.active {
+    display: flex;
+}
+
+#searchbox {
+    width: 80%;
+}
+
+.results-container {
+    border: 1px black solid;
+    border-radius: 5px;
+    background-color: var(--gray-x-gray);
+    margin-top: 20px;
+    padding: 10px;
+}
 
 /* 
 ||======================================================================||
