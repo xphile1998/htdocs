@@ -13,7 +13,7 @@ session_start();
 ||    + Database connection file                        ||
 ||    + Main Model file                                 ||
 ||    + Vehicles Model file                             ||
-||    + Functions file
+||    + Functions file                                  ||
 \\======================================================*/
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/library/connections.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/model/main-model.php';
