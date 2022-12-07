@@ -6,7 +6,6 @@ $dbname = 'my_database';
 $output = '';
 
 $conn = mysqli_connect($server, $username, $password, $dbname);
-// mysqli_select_db() or die("Could not find DB!");
 
 //collect
 if (isset($_POST['searchVal'])) {
