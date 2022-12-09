@@ -23,6 +23,16 @@ function checkPassword($clientPassword)
     return preg_match($pattern, $clientPassword);
 }
 
+function checkSearch($searchTxt)
+{
+    console_log('Entering the checkSearch function');
+    console_log($searchTxt);
+    // $pattern = '/^(?=.*[[:digit:]])(?=.*[[:punct:]\s])(?=.*[A-Z])(?=.*[a-z])(?:.{8,})$/';
+    $pattern = "#[^0-9a-z\s]#i";
+
+    return preg_replace($pattern, "", $searchTxt);
+}
+
 // Build a navigation bar using the $classifications array
 function buildNavList($classifications)
 {

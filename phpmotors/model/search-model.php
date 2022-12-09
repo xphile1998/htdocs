@@ -6,18 +6,23 @@
 ||                          ||
 \\==========================*/
 
-function searchInv($search)
+function searchInv($searchTxt)
 {
+    console_log('You are in the searchInv function');
     $db = phpmotorsConnect();
-    $sqlSearch = '%' . $search . '%';
-    $sql = `SELECT *
-            FROM inventory
-            WHERE invColor LIKE {$sqlSearch}
-                OR invMake LIKE {$sqlSearch}
-                OR invModel LIKE {$sqlSearch}
-                OR invDescription LIKE {$sqlSearch}
-                OR invPrice LIKE {$sqlSearch}`;
+    $sqlSearch = "'%" . $searchTxt . "%'";
+    console_log("This is the value of sqlSearch: ");
+    console_log($sqlSearch);
+    $sql = "SELECT * FROM inventory WHERE invColor LIKE :sqlSearch OR invMake LIKE :sqlSearch OR invModel LIKE :sqlSearch OR invDescription LIKE :sqlSearch OR invPrice LIKE :sqlSearch";
+    // $sql = "SELECT * FROM inventory WHERE invColor LIKE '%red%' OR invMake LIKE '%red%' OR invModel LIKE '%red%' OR invDescription LIKE '%red%' OR invPrice LIKE '%red%'";
+    console_log("This is the value of sql: ");
+    console_log($sql);
+
     $stmt = $db->prepare($sql);
+    console_log("This is the value of stmt: ");
+    $stmt->bindValue(':sqlSearch', $sqlSearch, PDO::PARAM_STR);
+    console_log($stmt);
+
     $stmt->execute();
     $allResults = $stmt->fetchall(PDO::FETCH_ASSOC);
     $stmt->closeCursor();
@@ -27,41 +32,20 @@ function searchInv($search)
 
 function displaySearch($results)
 {
-    // stuff
+    console_log('You are in the displayResults function');
+    
+    $dv = '<ul id="results-display">';
+    foreach ($results as $result) {
+        $dv .= '<li class="searchRes">';
+        $dv .= "<a href='../vehicles/?action=vehicleView&vehicleId=$result[invId]'>";
+        $dv .= "<img src='$result[invThumbnail]' alt='Image of $result[invMake] $result[invModel] on phpmotors.com'>";
+        $dv .= "<h2>$result[invMake] $result[invModel]</h2>";
+        $dv .= '</a>';
+        $dv .= "<span>$result[invDescription]</span>";
+        $dv .= '<hr>';
+        $dv .= '</li>';
+    }
+    $dv .= '</ul>';
+    return $dv;
 }
 
-
-// function searchq($searchVal)
-// {
-//     $server = 'localhost';
-//     $username = 'iClient';
-//     $password = 'A)TkEQkiK)c!A!5a';
-//     $dbname = 'phpmotors';
-//     $output = '';
-
-//     $conn = mysqli_connect($server, $username, $password, $dbname);
-
-//     //collect
-//     if (isset($_POST[$searchVal])) {
-//         $searchq = $_POST[$searchVal];
-//         $searchq = preg_replace("#[^0-9a-z]#i", "", $searchq);
-
-//         $query = mysqli_query($conn, "SELECT * FROM members WHERE firstname LIKE '%$searchq%' OR lastname LIKE '%$searchq%'") or die("Could not search");
-//         $count = mysqli_num_rows($query);
-//         if ($count == 0) {
-//             $output = 'There was no search results';
-//         } else {
-//             while ($row = mysqli_fetch_array($query)) {
-//                 $make = $row['invMake'];
-//                 $model = $row['invModel'];
-//                 $description = $row['invDescription'];
-                
-//                 $output .= '<div class="searchResult">
-//                             <span class="resTitle">' . $make . ' ' . $model . '</span>
-//                             <span class="resDesc">' . $description . '</span>
-//                             </div>';
-//             }
-//         }
-//     }
-//     echo ($output);
-// }

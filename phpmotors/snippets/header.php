@@ -23,7 +23,7 @@
         ?>
             <a href="/phpmotors/accounts/?action=logout">Logout</a>
         <?php } else { ?>
-            <a href="accounts/?action=deliverLoginView" title="Login or Register with PHP Motors">My Account</a>
+            <a href="/phpmotors/accounts/?action=deliverLoginView" title="Login or Register with PHP Motors">My Account</a>
         <?php } ?>
     </div>
     <div id="searchLink">

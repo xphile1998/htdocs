@@ -256,6 +256,10 @@ div.ug_img {
     padding: 10px;
 }
 
+.searchRes {
+    list-style: none;
+}
+
 
 /* 
 ||======================================================================||
@@ -329,6 +333,13 @@ div.ug_img {
 div#content_box img {
     border-radius: 10px;
 }
+
+#article-container {
+    background-color: var(--white);
+    padding: 20px;
+}
+
+
 
 
 /* 

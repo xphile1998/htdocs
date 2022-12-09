@@ -13,16 +13,7 @@
     <link rel="stylesheet" media="screen" href="/phpmotors/css/normalize.css">
     <link rel="stylesheet" media="screen" href="/phpmotors/css/main.css">
     <link rel="stylesheet" media="screen" href="/phpmotors/css/medium.css">
-    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        function searchq() {
-            var searchTxt = $("input[name='search']").val();
 
-            $.post("search.php", {searchVal: searchTxt}, function(output) {
-                $("#article-container").html(output);
-            });
-        }
-    </script> -->
 </head>
 
 <body>
@@ -37,17 +28,30 @@
 
         <main>
             <h1>Search Our Inventory</h1>
+
+            <?php
+                if (isset($_SESSION['message'])) {
+                    echo $_SESSION['message'];
+                }
+                $_SESSION['message'] = null;
+            ?>
+            
             <div class="form-container">
-                <form action="../search/?action='search'" method="post">
-                <!-- <form action="../view/search.php" method="post"> -->
-                    <input type="text" name="search" placeholder="Search for..." id="searchbox" onkeydown="searchq();">
-                    <button type="submit" name="submitSearch" value="search" id="searchBtn">Search</button>
+                <form  method="post" action="/phpmotors/search/?action=search">
+                    <input type="text" name="search" placeholder="Search for..." id="search">
+                    <input type="submit" name="searchTxt" value="Search" id="searchBtn">
                 </form>
             </div>
 
-            <div class="results-container hidden">
+            <div class="results-container">
                 <h2 class="results">Your results: </h2>
-                <div id="article-container"></div>
+                <div id="article-container">
+                    <?php 
+                    if (isset($searchDisplay)) {
+                        echo $searchDisplay; 
+                    }
+                    ?>
+                </div>
             </div>
         </main>
 
