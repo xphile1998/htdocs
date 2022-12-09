@@ -38,10 +38,10 @@ if ($action == NULL) {
 switch ($action) {
     case 'search':
         $_SESSION['message'] = null;
-        console_log('You have entered the search results case.');
+        // console_log('You have entered the search results case.');
         $searchTxt = filter_input(INPUT_POST, 'search', FILTER_SANITIZE_STRING);
         $searchTxt = checkSearch($searchTxt);
-        console_log($searchTxt);
+        // console_log($searchTxt);
         
 
         // Check for input
@@ -54,7 +54,7 @@ switch ($action) {
         // If there is $searchTxt to search for
         $searchData = searchInv($searchTxt);
         $searchDisplay = displaySearch($searchData);
-        console_log($searchDisplay);
+        // console_log($searchDisplay);
         include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/search.php';
         break;
 

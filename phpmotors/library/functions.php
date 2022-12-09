@@ -25,9 +25,8 @@ function checkPassword($clientPassword)
 
 function checkSearch($searchTxt)
 {
-    console_log('Entering the checkSearch function');
-    console_log($searchTxt);
-    // $pattern = '/^(?=.*[[:digit:]])(?=.*[[:punct:]\s])(?=.*[A-Z])(?=.*[a-z])(?:.{8,})$/';
+    // console_log('Entering the checkSearch function');
+    // console_log($searchTxt);
     $pattern = "#[^0-9a-z\s]#i";
 
     return preg_replace($pattern, "", $searchTxt);
