@@ -13,12 +13,25 @@ function searchInv($searchTxt)
     $sqlSearch = "'%" . $searchTxt . "%'";
     // console_log("This is the value of sqlSearch: ");
     // console_log($sqlSearch);
-    $sql = "SELECT * FROM inventory WHERE invColor LIKE ". $sqlSearch ." OR invMake LIKE ". $sqlSearch ." OR invModel LIKE ". $sqlSearch ." OR invDescription LIKE ". $sqlSearch ." OR invPrice LIKE ". $sqlSearch;
+    // $sql = "SELECT * 
+    //         FROM inventory 
+    //         WHERE invColor LIKE :sqlSearch 
+    //             OR invMake LIKE :sqlSearch 
+    //             OR invModel LIKE :sqlSearch 
+    //             OR invDescription LIKE :sqlSearch 
+    //             OR invPrice LIKE :sqlSearch";
+    $sql = "SELECT * 
+            FROM inventory 
+            WHERE invColor LIKE " . $sqlSearch . " 
+            OR invMake LIKE " . $sqlSearch . " 
+            OR invModel LIKE " . $sqlSearch . " 
+            OR invDescription LIKE " . $sqlSearch . " 
+            OR invPrice LIKE " . $sqlSearch;
     // console_log("This is the value of sql: ");
     // console_log($sql);
 
     $stmt = $db->prepare($sql);
-    // $stmt->bindValue(':sqlSearch', $sqlSearch, PDO::PARAM_STR);
+    // $stmt->bindValue(':sqlSearch', '%' . $searchTxt > '%', PDO::PARAM_STR);
     // console_log("This is the value of stmt: ");
     // console_log($stmt);
 
@@ -29,11 +42,14 @@ function searchInv($searchTxt)
     return $allResults;
 }
 
-function displaySearch($results)
+function displaySearch($results, $count)
 {
     // console_log('You are in the displayResults function');
-    
-    $dv = '<ul id="results-display">';
+
+    $dv = '<div class="results-container">';
+    $dv .= '<h2 class="results">There are ' . $count . ' result(s): </h2>';
+    $dv .= '<div id="article-container">';
+    $dv .= '<ul id="results-display">';
     foreach ($results as $result) {
         $dv .= '<li class="searchRes">';
         $dv .= "<a href='../vehicles/?action=vehicleView&vehicleId=$result[invId]'>";
@@ -47,4 +63,3 @@ function displaySearch($results)
     $dv .= '</ul>';
     return $dv;
 }
-

@@ -53,7 +53,8 @@ switch ($action) {
 
         // If there is $searchTxt to search for
         $searchData = searchInv($searchTxt);
-        $searchDisplay = displaySearch($searchData);
+        $count = sizeof($searchData);
+        $searchDisplay = displaySearch($searchData, $count);
         // console_log($searchDisplay);
         include $_SERVER['DOCUMENT_ROOT'] . '/phpmotors/view/search.php';
         break;
@@ -63,4 +64,3 @@ switch ($action) {
         exit;
         break;
 }
-?>
