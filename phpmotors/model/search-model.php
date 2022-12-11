@@ -8,32 +8,20 @@
 
 function searchInv($searchTxt)
 {
-    // console_log('You are in the searchInv function');
-    $db = phpmotorsConnect();
     $sqlSearch = "'%" . $searchTxt . "%'";
-    // console_log("This is the value of sqlSearch: ");
-    // console_log($sqlSearch);
-    // $sql = "SELECT * 
-    //         FROM inventory 
-    //         WHERE invColor LIKE :sqlSearch 
-    //             OR invMake LIKE :sqlSearch 
-    //             OR invModel LIKE :sqlSearch 
-    //             OR invDescription LIKE :sqlSearch 
-    //             OR invPrice LIKE :sqlSearch";
-    $sql = "SELECT * 
-            FROM inventory 
-            WHERE invColor LIKE " . $sqlSearch . " 
-            OR invMake LIKE " . $sqlSearch . " 
-            OR invModel LIKE " . $sqlSearch . " 
-            OR invDescription LIKE " . $sqlSearch . " 
-            OR invPrice LIKE " . $sqlSearch;
-    // console_log("This is the value of sql: ");
-    // console_log($sql);
+    $db = phpmotorsConnect();
+
+    $sql = "
+        SELECT SQL_CALC_FOUND_ROWS * 
+        FROM inventory 
+        WHERE invColor LIKE {$sqlSearch} 
+        OR invMake LIKE {$sqlSearch}
+        OR invModel LIKE {$sqlSearch}
+        OR invDescription LIKE {$sqlSearch}
+        OR invPrice LIKE {$sqlSearch}
+    ";
 
     $stmt = $db->prepare($sql);
-    // $stmt->bindValue(':sqlSearch', '%' . $searchTxt > '%', PDO::PARAM_STR);
-    // console_log("This is the value of stmt: ");
-    // console_log($stmt);
 
     $stmt->execute();
     $allResults = $stmt->fetchall(PDO::FETCH_ASSOC);
@@ -44,8 +32,6 @@ function searchInv($searchTxt)
 
 function displaySearch($results, $count)
 {
-    // console_log('You are in the displayResults function');
-
     $dv = '<div class="results-container">';
     $dv .= '<h2 class="results">There are ' . $count . ' result(s): </h2>';
     $dv .= '<div id="article-container">';
