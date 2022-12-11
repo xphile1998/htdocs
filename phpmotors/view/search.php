@@ -46,8 +46,8 @@
             </div>
 
             <?php
-            if (isset($searchDisplay)) {
-                echo $searchDisplay;
+            if (isset($searchData)) {
+                echo $searchData;
             }
             ?>
         </main>

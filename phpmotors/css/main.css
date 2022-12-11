@@ -264,6 +264,25 @@ div.ug_img {
     min-height: 30px;
 }
 
+.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-family: var(--heading-font);
+    font-size: 24px;
+}
+
+.pages {
+    padding: 5px;
+}
+
+.pagination a.selected {
+    background-color: blue;
+    color: white;
+    font-weight: 600;
+    font-family: var(--heading-font);
+    font-size: 24px;
+}
 
 /* 
 ||======================================================================||
